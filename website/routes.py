@@ -6,6 +6,11 @@ from flask import render_template
 def home_page():
     return render_template('home.html')
 
-@app.route('/form')
+@app.route('/form',methods=['GET', 'POST'])
 def form_page():
     return render_template('form.html')
+
+
+@app.route('/thanks')
+def thanks_page():
+    return render_template('thanks.html')

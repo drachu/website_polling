@@ -5,98 +5,161 @@ Pytania
 
 {% block content %}
 
-<div class="container">
+<div class=" justify-content-center">
+<!-- align-items-center  w-75 border border-primary my-5 -->
+    <!-- Pytanie nr 1 - rodzaj: checkbox -->
+    
+    <div class="row justify-content-md-center border border-primary">
+        <div class="col text-center">
+            <div class="question_text my-3">
+                <h4>Treść pytania: Query z database z treścią pytania</h4>
+            </div>
+            <div class="answer my-3">
+                <h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
 
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
 
-                <!-- for -->
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Default checkbox
-                </label>
-              </div>
+                <div class="row align-items-center">
+                    <!-- for -->
+                    <div class="col align-self-center">
+                        <div class="checkbox-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="checkbox-inline" for="flexCheckDefault">
+                                Default checkbox
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col align-self-center">
+                        <div class="checkbox-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="checkbox-inline" for="flexCheckDefault">
+                                Default checkbox
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col align-self-center">
+                        <div class="checkbox-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="checkbox-inline" for="flexCheckDefault">
+                                Default checkbox
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
     </div>
-</div>
+    <!-- Koniec rodzaj pytania nr 1 -->
 
 
+    <!-- Pytanie nr 2 - rodzaj: checkbox -->
+    <div class="row align-items-center border border-primary my-5">
+        <div class="col">
+            <div class="question_text my-3">
+                <h4>Treść pytania: Query z database z treścią pytania</h4>
+            </div>
+            <div class="answer my-3">
+                <h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
 
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+
+                <div class="row align-items-center">
+                    <!-- for -->
+                    <div class="col align-self-center">
+                        <div class="form-check">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                {{form.hidden_tag()}}
+                                {{form.rok}}
+
+
+                                <!-- <option selected>Open this select menu</option>
+                                <option value="1">{{form.}}</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option> -->
+                              </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
-        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
-    </div>
-</div>
-
-</div>
 
     
+
+    <!-- Koniec rodzaj pytania nr 2 -->
+
+
+
+    <!--
+
+<div class="row align-items-center">
+    <div class="col">
+        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
+        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
+            <label for="customRange1" class="form-label">Example range</label>
+            <input type="range" class="form-range" id="customRange1"></div>
+    </div>
+</div>
+
+
+<div class="row align-items-center">
+    <div class="col">
+        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
+        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Moja ulubiona gra to" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Comments</label>
+              </div>
+        
+        </div>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
+        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
+        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
+        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
+        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
+        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="question_text"><h4>Treść pytania: Query z database z treścią pytania</h4></div>
+        <div class="answer"><h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6></div>
+    </div>
+</div>
+
+
+
+
 <div class="submit_answers">
 
 
+</div> -->
 </div>
 
-</div>
+
+
+
 
 {% endblock %}

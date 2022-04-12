@@ -3,7 +3,7 @@ from website import db
 class User(db.Model):
     #Informacje o osobie //mieszane//
     id = db.Column(db.Integer(), primary_key=False)
-    wiek = db.Column(db.Integer(), nullable=False) #lista
+    rok = db.Column(db.Integer(), nullable=False) #lista
     zwiazek = db.Column(db.String(length=10), nullable=False) #lista
     praca = db.Column(db.String(length=10), nullable=False) #tak-nie
 

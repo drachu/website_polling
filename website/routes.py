@@ -1,6 +1,7 @@
 from run import app
 from flask import render_template
 from website.forms import pytanieForm
+from website.models import Poll
 
 @app.route('/')
 @app.route('/home')

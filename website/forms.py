@@ -13,7 +13,7 @@ class pytanieForm(FlaskForm):
     #Czas gry
     #gra_w_ciagu_12 = Integer()
     gra_prof = RadioField(label="Czy grasz profesjonalnie? (e-sport, streaming itp.)", choices=[("tak", "Tak"), ("nie", "Nie")], validators=[DataRequired()])
-    gra_ulubiona = StringField(label="Jaka jest Twoja ostatnia ulubiona gra, w której najbardziej lubisz spędzać czas?", validators=[DataRequired()])
+    gra_ulubiona = StringField(label="Jaka jest Twoja ostatnia ulubiona gra, w której najbardziej lubisz spędzać czas?", validators=[DataRequired()],render_kw={"placeholder": "test"})
     gra_platforma = SelectField(label="Na jakiej platformie spędzasz najwięcej czasu?", choices=[("pc", "PC"), ("konsola", "Konsola (XBOX/PS)"), ("konsola_mobilna", "Konsola mobilna (np. Nintendo Switch)"), ("mobile", "Gry mobilne")], validators=[DataRequired()])
     gra_klan = RadioField(label="Czy jestes aktualnie w jakims klanie/drużynie/gildii gdzie regularnie grasz razem z innymi?", choices=[("tak", "Tak"), ("nie", "Nie")], validators=[DataRequired()])
     gra_grind = RadioField(label="W grach, w których spędzasz czas pojawia się zjawisko 'grindu'?", choices=[("tak", "Tak"), ("nie", "Nie")], validators=[DataRequired()])
@@ -44,7 +44,6 @@ class pytanieForm(FlaskForm):
     tow_brak_towarzystwa = RadioField(label="Brakuje Ci towarzystwa?", choices=[("nigdy", "Nigdy"), ("rzadko", "Rzadko"), ("czasami", "Czasami"), ("czesto","Często"), ("zawsze", "Zawsze")], validators=[DataRequired()])
     tow_izolacja = RadioField(label="Czujesz się odizolowany od innych?", choices=[("nigdy", "Nigdy"), ("rzadko", "Rzadko"), ("czasami", "Czasami"), ("czesto","Często"), ("zawsze", "Zawsze")], validators=[DataRequired()])
     tow_przytloczenie = RadioField(label="Czy czujesz się przytłoczony grając w gry?", choices=[("nigdy", "Nigdy"), ("rzadko", "Rzadko"), ("czasami", "Czasami"), ("czesto","Często"), ("zawsze", "Zawsze")], validators=[DataRequired()])
-
 
 
     submit = SubmitField(label="Zakończ")

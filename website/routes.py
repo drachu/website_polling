@@ -19,3 +19,11 @@ def form_page():
 @app.route('/thanks')
 def thanks_page():
     return render_template('thanks.html')
+
+
+@app.route('/test',methods=['GET', 'POST'])
+def test_page():
+    form = pytanieForm()
+    if form.validate_on_submit():
+        pass
+    return render_template('test.html', form=form)

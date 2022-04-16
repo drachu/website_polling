@@ -41,30 +41,110 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
    </body>
-   <style>
-body {
-        /* background:url("static/images/tlo.jpg");   */
+<!-- Wlasne style ustawienia -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-        /* background-size:100% 100%; */
-        /* background-repeat:no-repeat; */
+  body {
+      font-family: 'Bebas Neue', cursive;
+      background: url("static/images/gradient.png");
+      /* background-size:100% 100%; */
+      /* background-repeat:no-repeat; */
+  }
 
-
-      background-color: #212121;
-      color: white
-      }
-
-    .parallax {
-      /* The image used */
-      background-image: url("static/images/tlo.jpg");
-    
+  .parallax0,
+  .parallax1,
+  .parallax2,
+  .parallax3 {
       /* Set a specific height */
-      min-height: 500px;
-    
+      /* min-height: 500px; */
+
       /* Create the parallax scrolling effect */
+      
+      position: relative;
       background-attachment: fixed;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-    }
-   </style>
+
+  }
+
+  .parallax0 {
+      /* The image used */
+      background-image: url("static/images/trojkat.png");
+  }
+
+  .parallax1 {
+      /* The image used */
+      background-image: url("static/images/trojkat1.png");
+  }
+
+  .parallax2 {
+      /* The image used */
+      background-image: url("static/images/trojkat2.png");
+  }
+
+  .parallax3 {
+      /* The image used */
+      background-image: url("static/images/trojkat3.png");
+  }
+
+  #chmurka {
+      background-color: #FFFDFA;
+      border-style: outset;
+      border-radius: 30px;
+      border-color: #FFFDFA;
+  }
+
+  input[type='radio']:after {
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+      top: -8px;
+      left: -1px;
+      position: relative;
+      /* background-color: #d1d3d1; */
+      background-color: #b5b7b5;
+      content: '';
+      display: inline-block;
+  }
+
+  input[type='radio']:checked:after {
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+      top: -8px;
+      left: -1px;
+      position: relative;
+      background-color: #10c6ff;
+      content: '';
+      display: inline-block;
+  }
+
+  input[type='radio']:hover:after {
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+      top: -8px;
+      left: -1px;
+      position: relative;
+      background-color: #4dcff8;
+      content: '';
+      display: inline-block;
+  }
+
+  .pytania {
+      width: 100%;
+  }
+</style>
+<!-- Wlasne style KONIEC -->
+       <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+        
+        slider.oninput = function() {
+          output.innerHTML = this.value;
+        }
+        </script>
 </html>

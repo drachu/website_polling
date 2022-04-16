@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+{% block title %}
+Pytania
+{% endblock %}
+
+{% block content %}
+<!-- Uwagi -->
+<!-- 
+    Kuba:
+    motyw przewodni, białe chmurki, font:black, font:squada one (First presentation), MainColor: blue(Gradient.png), 
+    
+    Adam:
+    1. Nie numerować pytań
+    2. radiobuttony poziomo ustawione
+
+ -->
+<!-- Koniec uwag -->
+<!-- Wlasne style ustawienia -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+    body {
+        font-family: 'Bebas Neue', cursive;
+        background: url("static/images/gradient.png");
+
+        /* background-size:100% 100%; */
+        /* background-repeat:no-repeat; */
+    }
+
+
+    #chmurka {
+        background-color: #FFFDFA;
+        border-style: outset;
+        border-radius: 30px;
+        border-color: #FFFDFA;
+    }
+
+    input[type='radio']:after {
+        width: 13px;
+        height: 13px;
+        border-radius: 13px;
+        top: -10px;
+        left: -1px;
+        position: relative;
+        /* background-color: #d1d3d1; */
+        background-color: black;
+        content: '';
+        display: inline-block;
+    }
+
+    input[type='radio']:checked:after {
+        width: 13px;
+        height: 13px;
+        border-radius: 13px;
+        top: -10px;
+        left: -1px;
+        position: relative;
+        background-color: #10c6ff;
+        content: '';
+        display: inline-block;
+    }
+</style>
+<!-- Wlasne style KONIEC -->
+
+<div class="container">
+    <div class="description text-center my-5">
+        <h2>Opis wstępny</h2>
+    </div>
+
+
+    <!-- Pytania -->
+    <div class="pytania">
+
+        <!-- 20 negatyw_gniew-->
+
+        <div class="row my-5">
+            <div class="col"></div>
+            <div id="chmurka" class="col-6">
+                <div class="question_text my-4 ">
+                    <h4 class="text-center">{{form.negatyw_gniew.label()}}
+                        </br>
+                        </br>
+                        <div class="row justify-content-md-center">
+                            {% for subfield in form.negatyw_gniew %}
+                            <tr>
+                                <div class="col-2 ">
+                                    <td>{{ subfield }}</td>
+                                    <td>{{ subfield.label }}</td>
+                                </div>
+                            </tr>
+                            {% endfor %}
+                        </div>
+                    </h4>
+                </div>
+
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <!-- 21 tow_kontakty -->
+
+        <div class="row my-5">
+            <div class="col"></div>
+            <div id="chmurka" class="col-6 text-dark">
+                <div class="question_text my-4 ">
+                    <h4 class="text-center">{{form.tow_kontakty.label()}}
+                        </br>
+                        </br>
+                        <div class="row justify-content-md-center">
+                            {% for subfield in form.tow_kontakty %}
+                            <tr>
+                                <div class="col-2 ">
+                                    <td>{{ subfield }}</td>
+                                    <td>{{ subfield.label }}</td>
+                                </div>
+                            </tr>
+                            {% endfor %}
+                        </div>
+                    </h4>
+                </div>
+
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <!-- 22  tow_inni_sie_przejmuja -->
+
+        <div class="row my-5">
+            <div class="col"></div>
+            <div id="chmurka" class="col-6 text-dark">
+                <div class="question_text my-4 ">
+                    <h4 class="text-center">{{form.tow_inni_sie_przejmuja.label()}}
+                        </br>
+                        </br>
+                        <div class="row justify-content-md-center">
+                            {% for subfield in form.tow_inni_sie_przejmuja %}
+                            <tr>
+                                <div class="col-2 ">
+                                    <td>{{ subfield }}</td>
+                                    <td>{{ subfield.label }}</td>
+                                </div>
+                            </tr>
+                            {% endfor %}
+                        </div>
+                    </h4>
+                </div>
+
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <!-- 23 tow_brak_towarzystwa -->
+
+
+        <!-- Koniec pytań -->
+
+
+
+        <!-- submit -->
+
+        <div class="text-center my-4">
+
+            <form>
+                {{form.submit(class="btn btn-lg btn-block btn-primary")}}
+            </form>
+        </div>
+    </div>
+    <!-- koniec -->
+
+
+
+    <!-- Pytanie nr 1 - rodzaj: checkbox -->
+
+    <div class="row my-5">
+        <div class="col"></div>
+
+        <div class="col-6 border border-3 border-primary rounded ">
+            <div class="question_text my-3">
+                <h4>{{form.rok.label()}}</h4>
+            </div>
+            <div class="answer my-3">
+                <h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
+
+                <div class="row align-items-center">
+                    <div class="col align-self-center">
+                        <div class="checkbox-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="checkbox-inline" for="flexCheckDefault">
+                                Default checkbox
+                            </label>
+                        </div>
+                        <div class="col align-self-center">
+                            <div class="checkbox-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="checkbox-inline" for="flexCheckDefault">
+                                    Default checkbox
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col align-self-center">
+                            <div class="checkbox-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="checkbox-inline" for="flexCheckDefault">
+                                    Default checkbox
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+
+
+    <!-- Koniec rodzaj pytania nr 1 -->
+
+    <!-- Pytanie nr 2 : select -->
+    <div class="row my-5">
+        <div class="col"></div>
+
+        <div id="chmurka" class="col-6">
+            <div class="question_text my-4">
+                <h4 class="text-center">{{form.zwiazek.label()}}</h4>
+            </div>
+            <div class="answer my-3">
+                <div class="row align-items-center">
+                    <div class="col"></div>
+                    <div class="col-4 align-self-center">
+                        <div class="form-check">
+                            {{form.zwiazek(class="form-select form-select-lg mb-3 form-control border border-info")}}
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <!-- Koniec rodzaj pytania nr 2 -->
+
+    <!-- Pytanie nr 3 - rodzaj: radio -->
+    <div class="row my-5">
+        <div class="col"></div>
+        <div id="chmurka" class="col-6">
+            <div class="question_text my-4 ">
+                <h4 class="text-center">{{form.tow_inni_sie_przejmuja.label()}}
+                    </br>
+                    </br>
+                    <div class="row justify-content-md-center">
+                        {% for subfield in form.tow_inni_sie_przejmuja %}
+                        <tr>
+                            <div class="col-2 ">
+                                <td>{{ subfield }}</td>
+                                <td>{{ subfield.label }}</td>
+                            </div>
+                        </tr>
+                        {% endfor %}
+                    </div>
+                </h4>
+            </div>
+
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <!-- Koniec rodzaj pytania nr 3 -->
+
+
+    <!-- Pytanie nr 4 - rodzaj: slider -->
+
+
+
+    <div class="row my-5">
+        <div class="col"></div>
+        <div class="col-6 border border-3 border-primary rounded-3">
+            <div class="question_text my-3">
+                <h4>{{form.rok.label()}}</h4>
+            </div>
+            <div class="answer my-3">
+                <h6 class="text-center">Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
+
+                <!-- SLIDER -->
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <!-- Koniec rodzaj pytania nr 4 -->
+
+    <!-- Pytanie nr 5 - rodzaj: text area -->
+    <div class="row my-5">
+        <div class="col"></div>
+        <div class="col-6 border border-3 border-primary rounded-3">
+            <div class="question_text my-3">
+                <h4 class="text-center">{{form.gra_ulubiona.label()}}</h4>
+            </div>
+            <div class="answer my-3">
+
+                <div class="row align-items-center">
+                    <div class="col align-self-center">
+                        <div class="form-check">
+
+                            {{form.gra_ulubiona(class="form-text form-text-lg mb-3 form-control")}}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <!-- Koniec rodzaj pytania nr 5 -->
+    <div class="col"></div>
+</div>
+
+<!-- TEST -->
+<style>
+    .slidecontainer {
+        width: 100%;
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 25px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #04AA6D;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #04AA6D;
+        cursor: pointer;
+    }
+</style>
+
+<div class="slidecontainer">
+    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <p>Value: <span id="demo"></span>%</p>
+</div>
+
+
+
+<!-- Koniec TEST -->
+
+
+</div>
+
+{% endblock %}

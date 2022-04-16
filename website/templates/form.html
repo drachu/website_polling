@@ -5,16 +5,23 @@ Ankieta
 
 {% block content %}
 
+{% for field, errors in form.errors.items() %}
+{{ ', '.join(errors) }}
+{% endfor %}
+
 <div class="container-fluid">
 
+    <form class="form-horizontal" method="POST">
+       {{ form.hidden_tag() }}
+       <!-- form.csrf_token() -->
     <div class="parallax0">
 
-    <div class="description text-center my-5">
-        <h2>Opis wstępny</h2>
-    </div>
+        <div class="description text-center my-5">
+            <h2>Opis wstępny</h2>
+        </div>
 
 
-    <!-- Pytania -->
+        <!-- Pytania -->
 
 
         <!-- 1 rok -->
@@ -63,8 +70,8 @@ Ankieta
                 </div>
             </div>
             <div class="col"></div>
-        
-    </div>
+
+        </div>
         <!-- 3 praca -->
 
         <div class="row my-5">
@@ -215,8 +222,8 @@ Ankieta
             <div class="col"></div>
         </div>
     </div>
-        <!-- 9 pandemia_start -->
-<div class="parallax2">
+    <!-- 9 pandemia_start -->
+    <div class="parallax2">
         <div class="row my-5">
             <div class="col"></div>
 
@@ -239,7 +246,7 @@ Ankieta
             <div class="col"></div>
         </div>
 
-    
+
         <!-- 10 pandemia_gra_wiecej -->
 
         <div class="row">
@@ -396,8 +403,8 @@ Ankieta
             <div class="col"></div>
         </div>
     </div>
-        <!-- 16 negatyw_gra_pomimo_konsekwencji -->
-<div class="parallax3">
+    <!-- 16 negatyw_gra_pomimo_konsekwencji -->
+    <div class="parallax3">
         <div class="row my-5">
             <div class="col"></div>
             <div id="chmurka" class="col-6">
@@ -655,18 +662,28 @@ Ankieta
             </div>
             <div class="col"></div>
         </div>
-   
-    <!-- Koniec pytań -->
 
-    <!-- submit -->
-    <br><br>
-    <div class="text-center my-5">
+        <!-- Koniec pytań -->
 
-        <form>
-            {{form.submit(class="btn btn-lg btn-block btn-primary")}}
-        </form>
+        <!-- submit -->
+
+        <!-- <div class="text-center" style="margin-top: 120px;">
+            <a href="{{ url_for('form_page') }}" class="btn btn-lg btn-block btn-primary" role="button"
+                aria-pressed="true">
+                <h2>Zacznij ankietę</h2>
+            </a>
+        </div> -->
+
+
+        
+            <div class="text-center mb-5" style="margin-top: 80px;">
+
+                    {{form.submit(class="btn btn-lg btn-block btn-primary")}}
+                
+            </div>
+        
     </div>
-</div>
+</form>
     <!-- koniec -->
 
 </div>

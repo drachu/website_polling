@@ -46,6 +46,4 @@ class pytanieForm(FlaskForm):
     tow_przytloczenie = RadioField(label="Czy czujesz się przytłoczony grając w gry?", choices=[("nigdy", "Nigdy"), ("rzadko", "Rzadko"), ("czasami", "Czasami"), ("czesto","Często"), ("zawsze", "Zawsze")], validators=[DataRequired()])
 
 
-    submit = SubmitField(label="Zakończ")
-
-
+    submit = SubmitField(label="Zapisz wynik")

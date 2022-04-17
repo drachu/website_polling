@@ -47,7 +47,10 @@ def form_page():
         flash(f"Zapisano odpowiedzi.", category='success')
         return redirect(url_for('thanks_page'))
     else:
-        flash(f'Proszę uzupełnić brakujące pola.', category='danger')
+        flash(f'Proszę uzupełnić brakujące dane.', category='danger')
+    if form.errors != {}: #If there are not errors from the validations
+        for err_msg in form.errors.values():
+            flash(f'Proszę uzupełnić brakujące dane: {err_msg}', category='danger')
     
     return render_template('form.html', form=form)
 

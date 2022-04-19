@@ -40,7 +40,6 @@ class Poll(db.Model):
     negatyw_gniew = db.Column(db.String(length=30), nullable=False)
     
     #Stosunki z innymi, deprecha //nigdy, rzadzko, czesto, zawsze//
-    
     tow_kontakty = db.Column(db.Integer(), nullable=False) #1-5
     tow_inni_sie_przejmuja = db.Column(db.String(length=30), nullable=False)
     tow_brak_towarzystwa = db.Column(db.String(length=30), nullable=False)

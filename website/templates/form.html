@@ -1,833 +1,197 @@
-{% extends 'base.html' %}
-{% block title %}
-Pytania
-{% endblock %}
+{%from "_render_field.html" import render_radio_more_less, render_radio_yes_no,
+render_select, render_range, render_text, render_radio_numbers, render_integer%}
+{% extends 'base.html' %} {% block title %} Pytania {% endblock %} {% block
+content %}
 
-{% block content %}
-
-<style>
-
-    body{
-         background:url("static/images/tlo.png");
-
-         /* background-size:100% 100%; */
-        /* background-repeat:no-repeat; */
-    }
-
-</style>
-
-
-<div class="container">
-    <div class="description text-center my-5">
-        <h2>Opis wstępny</h2>
+<div class="row">
+  <div class="col" id="sideA">
+    <!-- Nawigacja pytań -->
+    <div class="sideTab">
+      <div id="list-example" class="list-group">
+        <a class="list-group-item list-group-item-action" href="#q1"></a>
+        <a class="list-group-item list-group-item-action" href="#q2"></a>
+        <a class="list-group-item list-group-item-action" href="#q3"></a>
+        <a class="list-group-item list-group-item-action" href="#q4"></a>
+        <a class="list-group-item list-group-item-action" href="#q5"></a>
+        <a class="list-group-item list-group-item-action" href="#q6"></a>
+        <a class="list-group-item list-group-item-action" href="#q7"></a>
+        <a class="list-group-item list-group-item-action" href="#q8"></a>
+        <a class="list-group-item list-group-item-action" href="#q9"></a>
+        <a class="list-group-item list-group-item-action" href="#q10"></a>
+        <a class="list-group-item list-group-item-action" href="#q11"></a>
+        <a class="list-group-item list-group-item-action" href="#q12"></a>
+        <a class="list-group-item list-group-item-action" href="#q13"></a>
+        <a class="list-group-item list-group-item-action" href="#q14"></a>
+        <a class="list-group-item list-group-item-action" href="#q15"></a>
+        <a class="list-group-item list-group-item-action" href="#q16"></a>
+        <a class="list-group-item list-group-item-action" href="#q17"></a>
+        <a class="list-group-item list-group-item-action" href="#q18"></a>
+        <a class="list-group-item list-group-item-action" href="#q19"></a>
+        <a class="list-group-item list-group-item-action" href="#q20"></a>
+        <a class="list-group-item list-group-item-action" href="#q21"></a>
+        <a class="list-group-item list-group-item-action" href="#q22"></a>
+        <a class="list-group-item list-group-item-action" href="#q23"></a>
+        <a class="list-group-item list-group-item-action" href="#q24"></a>
+        <a class="list-group-item list-group-item-action" href="#q25"></a>
+        <a class="list-group-item list-group-item-action" href="#q26"></a>
+        <a class="list-group-item list-group-item-action" href="#q27"></a>
+        <a class="list-group-item list-group-item-action" href="#q28"></a>
+        <a class="list-group-item list-group-item-action" href="#q29"></a>
+      </div>
     </div>
+  </div>
 
-
-    <!-- Pytania -->
-
-    <!-- 1 -->
-    <div class="row">
-        <div class="col"></div>
-
-        <div class="col-6 border border-3 border-primary rounded ">
-            <div class="question_text my-3">
-                <h4 class="text-center">1. {{form.rok.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-                            {{form.rok(class="form-select form-select-lg mb-3 form-control")}}
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="col-6">
+    <div class="grid-container">
+      <form method="POST" action="" novalidate>
+        {{form.hidden_tag()}}
+        <!-- 1 -->
+        <div class="grid-item grid-container" id="q1">
+          {{render_select(form.rok)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-
-    <!-- 2 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-
-        <div class="col-6 border border-3 border-primary rounded ">
-            <div class="question_text my-3">
-                <h4 class="text-center">2. {{form.zwiazek.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-                            {{form.zwiazek(class="form-select form-select-lg mb-3 form-control")}}
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 2 -->
+        <div class="grid-item grid-container" id="q2">
+          {{render_select(form.zwiazek)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 3 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">3. {{form.praca.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.praca(class="form-radio form-radio-lg mb-3 form-control" )}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 3 -->
+        <div class="grid-item grid-container" id="q3">
+          {{render_radio_yes_no(form.praca)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 4 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">4. {{form.gra_prof.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.gra_prof(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 4 -->
+        <div class="grid-item grid-container" id="q4">
+          {{render_radio_yes_no(form.gra_w_ciagu_12)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 5 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">5. {{form.gra_ulubiona.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.gra_ulubiona(class="form-text form-text-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 5 -->
+        <div class="grid-item grid-container" id="q5">
+          {{render_radio_yes_no(form.gra_prof)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 6 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-
-        <div class="col-6 border border-3 border-primary rounded ">
-            <div class="question_text my-3">
-                <h4 class="text-center">6. {{form.gra_platforma.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-                            {{form.gra_platforma(class="form-select form-select-lg mb-3 form-control")}}
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 6 -->
+        <div class="grid-item grid-container" id="q6">
+          {{render_integer(form.gra_tydz)}}
+          <br />
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 7 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">7. {{form.gra_klan.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.gra_klan(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 7 -->
+        <div class="grid-item grid-container" id="q7">
+          {{render_range(form.gra_tydz_weekend)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 8 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">8. {{form.gra_grind.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.gra_grind(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 8 -->
+        <div class="grid-item grid-container" id="q8">
+          {{render_select(form.gra_typ)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 9 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-
-        <div class="col-6 border border-3 border-primary rounded ">
-            <div class="question_text my-3">
-                <h4 class="text-center">9. {{form.pandemia_start.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-                            {{form.pandemia_start(class="form-select form-select-lg mb-3 form-control")}}
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 9 -->
+        <div class="grid-item grid-container" id="q9">
+          {{render_text(form.gra_ulubiona)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 10 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">10. {{form.pandemia_gra_wiecej.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.pandemia_gra_wiecej(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 10 -->
+        <div class="grid-item grid-container" id="q10">
+          {{render_select(form.gra_platforma)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-
-    <!-- 11 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">11. {{form.pandemia_czas.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.pandemia_czas(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 11 -->
+        <div class="grid-item grid-container" id="q11">
+          {{render_radio_yes_no(form.gra_klan)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 12 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">12. {{form.pozytyw_ucieczka.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.pozytyw_ucieczka(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 12 -->
+        <div class="grid-item grid-container" id="q12">
+          {{render_radio_yes_no(form.gra_grind)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 13 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">13. {{form.pozytyw_samokontrola.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.pozytyw_samokontrola(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 13 -->
+        <div class="grid-item grid-container" id="q13">
+          {{render_select(form.pandemia_start)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 14 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">14. {{form.pozytyw_koncentracja.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.pozytyw_koncentracja(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 14 -->
+        <div class="grid-item grid-container" id="q14">
+          {{render_radio_yes_no(form.pandemia_gra_wiecej)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 15 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">15. {{form.pozytyw_koordynacja.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.pozytyw_koordynacja(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 15 -->
+        <div class="grid-item grid-container" id="q15">
+          {{render_radio_yes_no(form.pandemia_czas)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 16 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">16. {{form.negatyw_gra_pomimo_konsekwencji.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.negatyw_gra_pomimo_konsekwencji(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 16 -->
+        <div class="grid-item grid-container" id="q16">
+          {{render_radio_yes_no(form.pozytyw_ucieczka)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 17 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">17. {{form.negatyw_gra_dluzej.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.negatyw_gra_dluzej(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 17 -->
+        <div class="grid-item grid-container" id="q17">
+          <p class="text-center">{{form.pozytyw_emocje.label()}}</p>
+          <div class="form-check">
+            {{form.pozytyw_emocje(class="form-radio form-radio-lg mb-3
+            form-control")}}
+          </div>
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 18 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">18. {{form.negatyw_gra_nad_inne_aktywnosci.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.negatyw_gra_nad_inne_aktywnosci(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 18 -->
+        <div class="grid-item grid-container" id="q18">
+          {{render_radio_yes_no(form.pozytyw_samokontrola)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 19 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">19. {{form.negatyw_zaniedbania.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.negatyw_zaniedbania(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 19 -->
+        <div class="grid-item grid-container" id="q19">
+          {{render_radio_numbers(form.pozytyw_koncentracja)}}
+          {{render_radio_numbers(form.pozytyw_koordynacja)}}
+          <br />
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 20 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">20. {{form.negatyw_gniew.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.negatyw_gniew(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 20 -->
+        <div class="grid-item grid-container" id="q20">
+          {{render_radio_more_less(form.negatyw_gra_pomimo_konsekwencji)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 21 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">21. {{form.tow_kontakty.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.tow_kontakty(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 21 -->
+        <div class="grid-item grid-container" id="q21">
+          {{render_radio_more_less(form.negatyw_gra_dluzej)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 22 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">22. {{form.tow_inni_sie_przejmuja.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.tow_inni_sie_przejmuja(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 22 -->
+        <div class="grid-item grid-container" id="q22">
+          {{render_radio_more_less(form.negatyw_gra_nad_inne_aktywnosci)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 23 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">23. {{form.tow_brak_towarzystwa.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.tow_brak_towarzystwa(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 23 -->
+        <div class="grid-item grid-container" id="q23">
+          {{render_radio_more_less(form.negatyw_zaniedbania)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 24 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">24. {{form.tow_izolacja.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.tow_izolacja(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 24 -->
+        <div class="grid-item grid-container" id="q24">
+          {{render_radio_more_less(form.negatyw_gniew)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- 25 -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">25. {{form.tow_przytloczenie.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.tow_przytloczenie(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 25 -->
+        <div class="grid-item grid-container" id="q25">
+          {{render_radio_numbers(form.tow_kontakty)}}
+          <br />
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- Koniec pytań -->
-
-<!-- TEST -->
-<style>
-    .slidecontainer {
-      width: 100%;
-    }
-    
-    .slider {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 25px;
-      background: #d3d3d3;
-      outline: none;
-      opacity: 0.7;
-      -webkit-transition: .2s;
-      transition: opacity .2s;
-    }
-    
-    .slider:hover {
-      opacity: 1;
-    }
-    
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 25px;
-      height: 25px;
-      background: #04AA6D;
-      cursor: pointer;
-    }
-    
-    .slider::-moz-range-thumb {
-      width: 25px;
-      height: 25px;
-      background: #04AA6D;
-      cursor: pointer;
-    }
-    </style>
-    </head>
-    <body>
-    
-    
-    <div class="slidecontainer">
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-      <p>Value: <span id="demo"></span>%</p>
-    </div>
-    
-    <script>
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
-    output.innerHTML = slider.value;
-    
-    slider.oninput = function() {
-      output.innerHTML = this.value;
-    }
-    </script>
-
-<!-- Koniec TEST -->
-
-    <!-- submit -->
-
-    <div class="text-center my-4">
-
-        <form>
-            {{form.submit(class="btn btn-lg btn-block btn-primary")}}
-        </form>
-    </div>
-
-    <!-- koniec -->
-
-
-
-    <!-- Pytanie nr 1 - rodzaj: checkbox -->
-
-    <div class="row my-5">
-        <div class="col"></div>
-
-        <div class="col-6 border border-3 border-primary rounded ">
-            <div class="question_text my-3">
-                <h4>{{form.rok.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-                <h6>Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="checkbox-inline">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="checkbox-inline" for="flexCheckDefault">
-                                Default checkbox
-                            </label>
-                        </div>
-                        <div class="col align-self-center">
-                            <div class="checkbox-inline">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="checkbox-inline" for="flexCheckDefault">
-                                    Default checkbox
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col align-self-center">
-                            <div class="checkbox-inline">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="checkbox-inline" for="flexCheckDefault">
-                                    Default checkbox
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <!-- 26 -->
+        <div class="grid-item grid-container" id="q26">
+          {{render_radio_more_less(form.tow_inni_sie_przejmuja)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-
-
-    <!-- Koniec rodzaj pytania nr 1 -->
-
-    <!-- Pytanie nr 2 : select -->
-    <div class="row my-5">
-        <div class="col"></div>
-
-        <div class="col-6 border border-3 border-primary rounded ">
-            <div class="question_text my-3">
-                <h4 class="text-center">2. {{form.zwiazek.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-                            {{form.zwiazek(class="form-select form-select-lg mb-3 form-control")}}
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 27 -->
+        <div class="grid-item grid-container" id="q27">
+          {{render_radio_more_less(form.tow_brak_towarzystwa)}}
         </div>
-        <div class="col"></div>
-    </div>
-    <!-- Koniec rodzaj pytania nr 2 -->
-
-    <!-- Pytanie nr 3 - rodzaj: radio -->
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">4. {{form.gra_prof.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-
-                <div class="row align-items-center">
-                    <div class="col align-self-center">
-                        <div class="form-check">
-
-                            {{form.gra_prof(class="form-radio form-radio-lg mb-3 form-control")}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- 28 -->
+        <div class="grid-item grid-container" id="q28">
+          {{render_radio_more_less(form.tow_izolacja)}}
         </div>
-        <div class="col"></div>
-    </div>
-
-    <!-- Koniec rodzaj pytania nr 3 -->
-
-
-    <!-- Pytanie nr 4 - rodzaj: slider -->
-
-
-
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4>{{form.rok.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-                <h6 class="text-center">Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
-
-                <!-- SLIDER -->
-            </div>
+        <!-- 29 -->
+        <div class="grid-item grid-container" id="q29">
+          {{render_radio_more_less(form.tow_przytloczenie)}}
         </div>
-        <div class="col"></div>
+        <!-- Submit -->
+        {{form.submit(class_="btn btn-lg btn-block btn-primary",
+        id_="form-submit")}}
+      </form>
     </div>
+  </div>
 
-    <!-- Koniec rodzaj pytania nr 4 -->
-
-    <!-- Pytanie nr 5 - rodzaj: text area -->
-    <div class="row my-5">
-        <div class="col"></div>
-        <div class="col-6 border border-3 border-primary rounded-3">
-            <div class="question_text my-3">
-                <h4 class="text-center">{{form.rok.label()}}</h4>
-            </div>
-            <div class="answer my-3">
-                <h6 class="text-center">Możliwe odpowiedzi: query z database z treścią możliwych odp</h6>
-                <input required type="text" class="form-control" name="topic" list="topic-list"
-                    placeholder="nazwa gry" />
-            </div>
-        </div>
-
-        <!-- Koniec rodzaj pytania nr 5 -->
-        <div class="col"></div>
-    </div>
-
-
-
+  <div class="col" id="sideB"></div>
+  <!-- Obszar animacji tła -->
+  <div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
 </div>
 
 {% endblock %}

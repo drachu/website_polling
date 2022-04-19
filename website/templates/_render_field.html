@@ -1,0 +1,75 @@
+<!-- <<<Wzory form pytań>>> -->
+
+{%macro render_radio_more_less(field)%} {%if field.errors%}
+<div class="q-error">Uzupełnij odpowiedź!</div>
+{%endif%}
+<p class="text-center">{{field.label()}}</p>
+<div class="btn-group">
+  {% for subfield in field %} {{subfield(class_="btn-check")}}
+  {{subfield.label(class_="btn btn-primary")}} {% endfor %}
+</div>
+
+{%endmacro%} {%macro render_radio_yes_no(field)%} {%if field.errors%}
+<div class="q-error">Uzupełnij odpowiedź!</div>
+{%endif%}
+
+<p class="text-center">{{field.label()}}</p>
+<div class="btn-group">
+  {% for subfield in field %} {%if (subfield.label=='Nie')%}
+  {{subfield(class_="btn-check")}} {{subfield.label(class_="btn
+  btn-outline-primary")}} {%else%} {{subfield(class_="btn-check")}}
+  {{subfield.label(class_="btn btn-outline-primary")}} {%endif%} {% endfor %}
+</div>
+
+{%endmacro%} {%macro render_range(field)%} {%if field.errors%}
+<div class="q-error">Uzupełnij odpowiedź!</div>
+{%endif%}
+
+<p class="text-center">{{field.label()}}</p>
+<div>
+  {{field(type="range", class="form-range", min="0", max="100",
+  id="customRange", value="0", oninput="this.nextElementSibling.value =
+  this.value")}}
+  <output>0</output>%
+</div>
+{%endmacro%} {%macro render_select(field)%} {%if field.errors%}
+<div class="q-error">Uzupełnij odpowiedź!</div>
+{%endif%}
+
+<p class="text-center">{{field.label()}}</p>
+<div>
+  {{field(class_="form-select form-select-lg mb-3 form-control",
+  id_="select-form")}}
+</div>
+
+{%endmacro%} {%macro render_text(field)%} {%if field.errors%}
+<div class="q-error">Uzupełnij odpowiedź!</div>
+{%endif%}
+
+<p class="text-center">{{field.label()}}</p>
+<div>
+  {{field(class="form-text form-text-lg mb-3 form-control",
+  placeholder="Minecraft")}}
+</div>
+
+{%endmacro%} {%macro render_radio_numbers(field)%} {%if field.errors%}
+<div class="q-error">Uzupełnij odpowiedź!</div>
+{%endif%}
+
+<p class="text-center">{{field.label()}}</p>
+<div class="btn-group" id="group-numbers">
+  {% for subfield in field %} {{subfield(class_="btn-check")}}
+  {{subfield.label(class_="btn btn-primary")}} {% endfor %}
+</div>
+
+{%endmacro%} {%macro render_integer(field)%} {%if field.errors%}
+<div class="q-error">Uzupełnij odpowiedź!</div>
+{%endif%}
+
+<p class="text-center">{{field.label()}}</p>
+{{field(class="form-text form-text-lg mb-3 form-control", max="168", min="0")}}
+{%endmacro%} {%macro render_message(field)%}
+
+<p class="text-center">{{field.label()}}</p>
+{{field(class="form-text form-text-lg mb-3 form-control", max="168", min="0")}}
+{%endmacro%}

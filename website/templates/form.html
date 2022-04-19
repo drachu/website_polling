@@ -1,691 +1,197 @@
-{% extends 'base.html' %}
-{% block title %}
-Ankieta
-{% endblock %}
+{%from "_render_field.html" import render_radio_more_less, render_radio_yes_no,
+render_select, render_range, render_text, render_radio_numbers, render_integer%}
+{% extends 'base.html' %} {% block title %} Pytania {% endblock %} {% block
+content %}
 
-{% block content %}
-
-{% for field, errors in form.errors.items() %}
-{{ ', '.join(errors) }}
-{% endfor %}
-
-<div class="container-fluid">
-
-    <form class="form-horizontal" method="POST">
-       {{ form.hidden_tag() }}
-       <!-- form.csrf_token() -->
-    <div class="parallax0">
-
-        <div class="description text-center my-5">
-            <h2>Opis wstępny</h2>
-        </div>
-
-
-        <!-- Pytania -->
-
-
-        <!-- 1 rok -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4">
-                    <h4 class="text-center">{{form.rok.label()}}</h4>
-                </div>
-                <div class="answer my-3">
-                    <div class="row align-items-center">
-                        <div class="col"></div>
-                        <div class="col-4 align-self-center">
-                            <div class="form-check">
-                                {{form.rok(class="form-select form-select-lg mb-3 form-control border border-info")}}
-                            </div>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 2 zwiazek -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4">
-                    <h4 class="text-center">{{form.zwiazek.label()}}</h4>
-                </div>
-                <div class="answer my-3">
-                    <div class="row align-items-center">
-                        <div class="col"></div>
-                        <div class="col-6 align-self-center">
-                            <div class="form-check">
-                                {{form.zwiazek(class="form-select form-select-lg mb-3 form-control border border-info")}}
-                            </div>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col"></div>
-
-        </div>
-        <!-- 3 praca -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6 text-dark">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.praca.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.praca %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-
-        </div>
-        <!-- 4 gra_prof -->
-
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.gra_prof.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.gra_prof %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 5 gra_ulubiona -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-3">
-                    <h4 class="text-center">{{form.gra_ulubiona.label()}}</h4>
-                </div>
-                <div class="answer my-3">
-                    <div class="row align-items-center">
-                        <div class="col align-self-center">
-                            <div class="form-check">
-                                {{form.gra_ulubiona(class="form-text form-text-lg mb-3 form-control border border-info" ,placeholder="Minecraft") }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 6 gra_platforma  -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4">
-                    <h4 class="text-center">{{form.gra_platforma.label()}}</h4>
-                </div>
-                <div class="answer my-3">
-                    <div class="row align-items-center">
-                        <div class="col"></div>
-                        <div class="col-8 align-self-center">
-                            <div class="form-check">
-                                {{form.gra_platforma(class="form-select form-select-lg mb-3 form-control border border-info")}}
-                            </div>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 7 gra_klan -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.gra_klan.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.gra_klan %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 8  gra_grind-->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.gra_grind.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.gra_grind %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
+<div class="row">
+  <div class="col" id="sideA">
+    <!-- Nawigacja pytań -->
+    <div class="sideTab">
+      <div id="list-example" class="list-group">
+        <a class="list-group-item list-group-item-action" href="#q1"></a>
+        <a class="list-group-item list-group-item-action" href="#q2"></a>
+        <a class="list-group-item list-group-item-action" href="#q3"></a>
+        <a class="list-group-item list-group-item-action" href="#q4"></a>
+        <a class="list-group-item list-group-item-action" href="#q5"></a>
+        <a class="list-group-item list-group-item-action" href="#q6"></a>
+        <a class="list-group-item list-group-item-action" href="#q7"></a>
+        <a class="list-group-item list-group-item-action" href="#q8"></a>
+        <a class="list-group-item list-group-item-action" href="#q9"></a>
+        <a class="list-group-item list-group-item-action" href="#q10"></a>
+        <a class="list-group-item list-group-item-action" href="#q11"></a>
+        <a class="list-group-item list-group-item-action" href="#q12"></a>
+        <a class="list-group-item list-group-item-action" href="#q13"></a>
+        <a class="list-group-item list-group-item-action" href="#q14"></a>
+        <a class="list-group-item list-group-item-action" href="#q15"></a>
+        <a class="list-group-item list-group-item-action" href="#q16"></a>
+        <a class="list-group-item list-group-item-action" href="#q17"></a>
+        <a class="list-group-item list-group-item-action" href="#q18"></a>
+        <a class="list-group-item list-group-item-action" href="#q19"></a>
+        <a class="list-group-item list-group-item-action" href="#q20"></a>
+        <a class="list-group-item list-group-item-action" href="#q21"></a>
+        <a class="list-group-item list-group-item-action" href="#q22"></a>
+        <a class="list-group-item list-group-item-action" href="#q23"></a>
+        <a class="list-group-item list-group-item-action" href="#q24"></a>
+        <a class="list-group-item list-group-item-action" href="#q25"></a>
+        <a class="list-group-item list-group-item-action" href="#q26"></a>
+        <a class="list-group-item list-group-item-action" href="#q27"></a>
+        <a class="list-group-item list-group-item-action" href="#q28"></a>
+        <a class="list-group-item list-group-item-action" href="#q29"></a>
+      </div>
     </div>
-    <!-- 9 pandemia_start -->
-    <div class="parallax2">
-        <div class="row my-5">
-            <div class="col"></div>
+  </div>
 
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4">
-                    <h4 class="text-center">{{form.pandemia_start.label()}}</h4>
-                </div>
-                <div class="answer my-3">
-                    <div class="row align-items-center">
-                        <div class="col"></div>
-                        <div class="col-6 align-self-center">
-                            <div class="form-check">
-                                {{form.pandemia_start(class="form-select form-select-lg mb-3 form-control border border-info")}}
-                            </div>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col"></div>
+  <div class="col-6">
+    <div class="grid-container">
+      <form method="POST" action="" novalidate>
+        {{form.hidden_tag()}}
+        <!-- 1 -->
+        <div class="grid-item grid-container" id="q1">
+          {{render_select(form.rok)}}
         </div>
-
-
-        <!-- 10 pandemia_gra_wiecej -->
-
-        <div class="row">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.pandemia_gra_wiecej.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.pandemia_gra_wiecej %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
+        <!-- 2 -->
+        <div class="grid-item grid-container" id="q2">
+          {{render_select(form.zwiazek)}}
         </div>
-
-        <!-- 11 pandemia_czas -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.pandemia_czas.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.pandemia_czas %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
+        <!-- 3 -->
+        <div class="grid-item grid-container" id="q3">
+          {{render_radio_yes_no(form.praca)}}
         </div>
-
-        <!-- 12 pozytyw_ucieczka -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.pozytyw_ucieczka.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.pozytyw_ucieczka %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
+        <!-- 4 -->
+        <div class="grid-item grid-container" id="q4">
+          {{render_radio_yes_no(form.gra_w_ciagu_12)}}
         </div>
-
-        <!-- 13  pozytyw_samokontrola -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.pozytyw_samokontrola.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.pozytyw_samokontrola %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
+        <!-- 5 -->
+        <div class="grid-item grid-container" id="q5">
+          {{render_radio_yes_no(form.gra_prof)}}
         </div>
-
-        <!-- 14 pozytyw_koncentracja -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.pozytyw_koncentracja.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.pozytyw_koncentracja %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
+        <!-- 6 -->
+        <div class="grid-item grid-container" id="q6">
+          {{render_integer(form.gra_tydz)}}
+          <br />
         </div>
-
-        <!-- 15  pozytyw_koordynacja -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.pozytyw_koordynacja.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.pozytyw_koordynacja %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
+        <!-- 7 -->
+        <div class="grid-item grid-container" id="q7">
+          {{render_range(form.gra_tydz_weekend)}}
         </div>
+        <!-- 8 -->
+        <div class="grid-item grid-container" id="q8">
+          {{render_select(form.gra_typ)}}
+        </div>
+        <!-- 9 -->
+        <div class="grid-item grid-container" id="q9">
+          {{render_text(form.gra_ulubiona)}}
+        </div>
+        <!-- 10 -->
+        <div class="grid-item grid-container" id="q10">
+          {{render_select(form.gra_platforma)}}
+        </div>
+        <!-- 11 -->
+        <div class="grid-item grid-container" id="q11">
+          {{render_radio_yes_no(form.gra_klan)}}
+        </div>
+        <!-- 12 -->
+        <div class="grid-item grid-container" id="q12">
+          {{render_radio_yes_no(form.gra_grind)}}
+        </div>
+        <!-- 13 -->
+        <div class="grid-item grid-container" id="q13">
+          {{render_select(form.pandemia_start)}}
+        </div>
+        <!-- 14 -->
+        <div class="grid-item grid-container" id="q14">
+          {{render_radio_yes_no(form.pandemia_gra_wiecej)}}
+        </div>
+        <!-- 15 -->
+        <div class="grid-item grid-container" id="q15">
+          {{render_radio_yes_no(form.pandemia_czas)}}
+        </div>
+        <!-- 16 -->
+        <div class="grid-item grid-container" id="q16">
+          {{render_radio_yes_no(form.pozytyw_ucieczka)}}
+        </div>
+        <!-- 17 -->
+        <div class="grid-item grid-container" id="q17">
+          <p class="text-center">{{form.pozytyw_emocje.label()}}</p>
+          <div class="form-check">
+            {{form.pozytyw_emocje(class="form-radio form-radio-lg mb-3
+            form-control")}}
+          </div>
+        </div>
+        <!-- 18 -->
+        <div class="grid-item grid-container" id="q18">
+          {{render_radio_yes_no(form.pozytyw_samokontrola)}}
+        </div>
+        <!-- 19 -->
+        <div class="grid-item grid-container" id="q19">
+          {{render_radio_numbers(form.pozytyw_koncentracja)}}
+          {{render_radio_numbers(form.pozytyw_koordynacja)}}
+          <br />
+        </div>
+        <!-- 20 -->
+        <div class="grid-item grid-container" id="q20">
+          {{render_radio_more_less(form.negatyw_gra_pomimo_konsekwencji)}}
+        </div>
+        <!-- 21 -->
+        <div class="grid-item grid-container" id="q21">
+          {{render_radio_more_less(form.negatyw_gra_dluzej)}}
+        </div>
+        <!-- 22 -->
+        <div class="grid-item grid-container" id="q22">
+          {{render_radio_more_less(form.negatyw_gra_nad_inne_aktywnosci)}}
+        </div>
+        <!-- 23 -->
+        <div class="grid-item grid-container" id="q23">
+          {{render_radio_more_less(form.negatyw_zaniedbania)}}
+        </div>
+        <!-- 24 -->
+        <div class="grid-item grid-container" id="q24">
+          {{render_radio_more_less(form.negatyw_gniew)}}
+        </div>
+        <!-- 25 -->
+        <div class="grid-item grid-container" id="q25">
+          {{render_radio_numbers(form.tow_kontakty)}}
+          <br />
+        </div>
+        <!-- 26 -->
+        <div class="grid-item grid-container" id="q26">
+          {{render_radio_more_less(form.tow_inni_sie_przejmuja)}}
+        </div>
+        <!-- 27 -->
+        <div class="grid-item grid-container" id="q27">
+          {{render_radio_more_less(form.tow_brak_towarzystwa)}}
+        </div>
+        <!-- 28 -->
+        <div class="grid-item grid-container" id="q28">
+          {{render_radio_more_less(form.tow_izolacja)}}
+        </div>
+        <!-- 29 -->
+        <div class="grid-item grid-container" id="q29">
+          {{render_radio_more_less(form.tow_przytloczenie)}}
+        </div>
+        <!-- Submit -->
+        {{form.submit(class_="btn btn-lg btn-block btn-primary",
+        id_="form-submit")}}
+      </form>
     </div>
-    <!-- 16 negatyw_gra_pomimo_konsekwencji -->
-    <div class="parallax3">
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.negatyw_gra_pomimo_konsekwencji.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.negatyw_gra_pomimo_konsekwencji %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
+  </div>
 
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 17 negatyw_gra_dluzej -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.negatyw_gra_dluzej.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.negatyw_gra_dluzej %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 18 negatyw_gra_nad_inne_aktywnosci-->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.negatyw_gra_nad_inne_aktywnosci.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.negatyw_gra_nad_inne_aktywnosci %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 19 negatyw_zaniedbania -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.negatyw_zaniedbania.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.negatyw_zaniedbania %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 20 negatyw_gniew -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.negatyw_gniew.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.negatyw_gniew %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 21 tow_kontakty-->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.tow_kontakty.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.tow_kontakty %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 22 tow_inni_sie_przejmuja -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.tow_inni_sie_przejmuja.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.tow_inni_sie_przejmuja %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 23 tow_brak_towarzystwa-->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.tow_brak_towarzystwa.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.tow_brak_towarzystwa %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 24 tow_izolacja -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.tow_izolacja.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.tow_izolacja %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- 25 tow_przytloczenie -->
-
-        <div class="row my-5">
-            <div class="col"></div>
-            <div id="chmurka" class="col-6">
-                <div class="question_text my-4 ">
-                    <h4 class="text-center">{{form.tow_przytloczenie.label()}}
-                        </br>
-                        </br>
-                        <div class="row justify-content-md-center">
-                            {% for subfield in form.tow_przytloczenie %}
-                            <tr>
-                                <div class="col-2 ">
-                                    <td>{{ subfield }}</td>
-                                    <td>{{ subfield.label }}</td>
-                                </div>
-                            </tr>
-                            {% endfor %}
-                        </div>
-                    </h4>
-                </div>
-
-            </div>
-            <div class="col"></div>
-        </div>
-
-        <!-- Koniec pytań -->
-
-        <!-- submit -->
-
-        <!-- <div class="text-center" style="margin-top: 120px;">
-            <a href="{{ url_for('form_page') }}" class="btn btn-lg btn-block btn-primary" role="button"
-                aria-pressed="true">
-                <h2>Zacznij ankietę</h2>
-            </a>
-        </div> -->
-
-
-        
-            <div class="text-center mb-5" style="margin-top: 80px;">
-
-                    {{form.submit(class="btn btn-lg btn-block btn-primary")}}
-                
-            </div>
-        
-    </div>
-</form>
-    <!-- koniec -->
-
+  <div class="col" id="sideB"></div>
+  <!-- Obszar animacji tła -->
+  <div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
 </div>
 
 {% endblock %}

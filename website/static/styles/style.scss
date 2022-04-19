@@ -1,0 +1,261 @@
+$green: #7ceaa4;
+$purple: #3b3d54;
+
+body {
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url(../images/background_main.png);
+  overflow-x: hidden;
+}
+
+p {
+  margin: 5%;
+}
+
+.q-error {
+  height: 30px;
+  background: rgb(255, 103, 103);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.sideTab {
+  position: fixed;
+  margin: auto;
+  left: 5%;
+  top: 15%;
+  box-shadow: 10px 5px 5px black;
+  border-radius: 20px;
+
+  transition: all 0.4s ease-in-out 0.05s;
+  animation-name: start-up-tab;
+  animation-duration: 2s;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  /* justify-content: space-around;
+  align-content: space-evenly; */
+
+  transition: all 0.4s ease-in-out 0.05s;
+  animation-name: start-up;
+  animation-duration: 2s;
+}
+
+.grid-item {
+  background: whitesmoke;
+  text-align: center;
+  height: 300px;
+  margin: 30px;
+
+  /* line-height: 40px; */
+
+  box-shadow: 10px 5px 5px black;
+  border-radius: 30px;
+
+  transition: all 0.4s ease-in-out 0.05s;
+  animation-name: start-up;
+  animation-duration: 2s;
+}
+
+.grid-item:hover {
+  margin: 50px 50px;
+  transform: scale(1.25);
+}
+
+.btn-group {
+  margin: 6%;
+  animation: transparent 3s;
+}
+#group-numbers {
+  margin: 0% 6% 0% 6%;
+}
+
+.btn-primary {
+  border-radius: 60px;
+  padding: 0%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn-outline-primary {
+  border-radius: 60px;
+  padding: 0%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+#form-submit {
+  margin: auto auto 5% auto;
+  width: 170px;
+  height: 90px;
+}
+
+.form-select {
+  width: 80%;
+  margin: 10%;
+  border-radius: 60px;
+}
+
+.form-range {
+  width: 80%;
+  margin: 10%;
+}
+
+.form-text {
+  width: 80%;
+  margin: 10%;
+  border-radius: 60px;
+}
+
+.list-group {
+  border-radius: 20px;
+}
+
+.list-group-item {
+  height: 20px;
+  transition: all 0.4s ease-in-out 0.05s;
+  animation-name: start-up-tab;
+  animation-duration: 2s;
+}
+
+@keyframes start-up {
+  0% {
+    background: transparent;
+    color: transparent;
+    margin-top: 600px;
+  }
+  100% {
+  }
+}
+@keyframes start-up-tab {
+  0% {
+    background: transparent;
+    color: transparent;
+    width: 0px;
+  }
+  100% {
+  }
+}
+
+.area {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  pointer-events: none;
+}
+
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+}
+
+.circles li:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}

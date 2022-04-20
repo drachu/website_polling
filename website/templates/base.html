@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="x-icon" href="static/images/icon.png">
+    <link rel="shortcut icon" type="x-icon" href="static/images/icon.png" />
 
     <!-- Bootstrap CSS -->
     <link
@@ -24,6 +24,7 @@
     <title>Strona główna</title>
   </head>
   <body
+    onload="checkShowHide()"
     class="scrollspy-example"
     data-bs-spy="scroll"
     data-bs-target="#list-example"
@@ -54,6 +55,10 @@
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='script.js') }}"
     ></script>
   </body>
   <style></style>

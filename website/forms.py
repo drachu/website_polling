@@ -4,14 +4,17 @@ from wtforms import StringField, SubmitField, SelectField, RadioField, IntegerRa
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 
 
-class pytanieForm(FlaskForm):
+class InfoForm(FlaskForm):
     #Informacje o osobie
     rok = SelectField(label="Podaj rok studiów: ", choices=[("1", "1"), ("2", "2"), ("3", "3"), ("4","4"), ("5", "5")], validators=[DataRequired()])
     zwiazek = SelectField(label="Czy jesteś w związku: ", choices=[("nie", "Nie"), ("tak", "Tak"), ("-", "To skomplikowane"), ("-", "Nie chcę odpowiadać")], validators=[DataRequired()])
     praca = RadioField(label="Jesteś obecnie zatrudniona/y?", choices=[("nie", "Nie"), ("tak", "Tak")], validators=[DataRequired()])
-
-    #Czas gry
     gra_w_ciagu_12 = RadioField(label="Czy grałeś/aś w jakieś gry w ciągu ostatnich 12 miesięcy?", choices=[("nie", "Nie"), ("tak", "Tak")], validators=[DataRequired()])
+    
+    submit = SubmitField(label="Zakończ")
+
+class GamesForm(FlaskForm):
+    #Czas gry
     gra_prof = RadioField(label="Czy grasz profesjonalnie? (e-sport, streaming itp.)", choices=[("nie", "Nie"), ("tak", "Tak")], validators=[DataRequired()])
     gra_tydz = IntegerField(label="Ile godzin w tygodniu spędzasz na grze?", validators=[DataRequired()])
     gra_tydz_weekend = IntegerRangeField(label="Ile z tych godzin to weekend?", validators=[DataRequired()])
@@ -30,7 +33,6 @@ class pytanieForm(FlaskForm):
 
     #Pozytywne odczucia
     pozytyw_ucieczka = RadioField(label="Gdy pozwalają Ci 'uciec' od problemów czy zmartwień? Potrafisz się dzięki nim w takich sytuacjach zrelaksować?", choices=[("nie", "Nie"), ("tak", "Tak")], validators=[DataRequired()])
-    pozytyw_emocje = RadioField(label="Jakie emocje zdarzało Ci się odczuć podczas rozgrywki?", choices=[("radosc", "Radność"), ("gniew", "Gniew"), ("smutek", "Smutek"), ("strach", "Strach")], validators=[DataRequired()])
     pozytyw_samokontrola = RadioField(label="Czy grając w gry potrafileś/aś zachować samokontrolę?", choices=[("nie", "Nie"), ("tak", "Tak")], validators=[DataRequired()])
     pozytyw_koncentracja = RadioField(label="Podczas gier czułeś/aś większą koncentrację:", choices=[("1", "1"), ("2", "2"), ("3", "3"), ("4","4"), ("5", "5")], validators=[DataRequired()])
     pozytyw_koordynacja = RadioField(label="...polepszoną koordynację:", choices=[("1", "1"), ("2", "2"), ("3", "3"), ("4","4"), ("5", "5")], validators=[DataRequired()])

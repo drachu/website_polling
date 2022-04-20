@@ -72,4 +72,48 @@
 
 <p class="text-center">{{field.label()}}</p>
 {{field(class="form-text form-text-lg mb-3 form-control", max="168", min="0")}}
+{%endmacro%} {%macro render_checkbox(field)%} {%if field.errors%}
+<div class="q-error">Uzupełnij odpowiedź!</div>
+{%endif%}
+<p class="text-center">{{field.label()}}</p>
+<div class="form-check">
+  <input
+    type="checkbox"
+    class="btn-check"
+    id="btn-check1"
+    value="radosc"
+    name="checkField"
+  />
+  <label class="btn btn-outline-primary" for="btn-check1"> Radość </label>
+</div>
+<div class="form-check">
+  <input
+    type="checkbox"
+    class="btn-check"
+    id="btn-check2"
+    value="gniew"
+    name="checkField"
+  />
+  <label class="btn btn-outline-primary" for="btn-check2"> Gniew </label>
+</div>
+<div class="form-check">
+  <input
+    type="checkbox"
+    class="btn-check"
+    id="btn-check3"
+    value="smutek"
+    name="checkField"
+  />
+  <label class="btn btn-outline-primary" for="btn-check3"> Smutek </label>
+</div>
+<div class="form-check">
+  <input
+    type="checkbox"
+    class="btn-check"
+    id="btn-check4"
+    value="strach"
+    name="checkField"
+  />
+  <label class="btn btn-outline-primary" for="btn-check4"> Strach </label>
+</div>
 {%endmacro%}

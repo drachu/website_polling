@@ -1,8 +1,9 @@
+from imp import reload
 from unicodedata import name
 from run import app
 from flask import render_template, redirect, request, url_for, flash
-from website.forms import pytanieForm
-from website.models import Poll
+from website.forms import GamesForm, InfoForm
+from website.models import Info, Games
 from website import db
 
 @app.route('/')
@@ -12,17 +13,31 @@ def home_page():
 
 @app.route('/form',methods=['GET', 'POST'])
 def form_page():
-    form = pytanieForm()
+    infoForm = InfoForm()
+    gamesForm = GamesForm()
     if request.method == 'POST':
-        if form.validate_on_submit():
-            user_poll = Poll(rok=form.rok.data, zwiazek=form.zwiazek.data, praca=form.praca.data, gra_w_ciagu_12=form.gra_w_ciagu_12.data, gra_prof=form.gra_prof.data, gra_tydz=form.gra_tydz.data, gra_tydz_weekend=form.gra_tydz_weekend.data,gra_typ=form.gra_typ.data ,gra_ulubiona=form.gra_ulubiona.data, gra_platforma=form.gra_platforma.data, gra_klan=form.gra_klan.data, gra_grind=form.gra_grind.data, pandemia_start=form.pandemia_start.data, pandemia_gra_wiecej=form.pandemia_gra_wiecej.data, pandemia_czas=form.pandemia_czas.data, pozytyw_ucieczka=form.pozytyw_ucieczka.data, pozytyw_emocje=form.pozytyw_emocje.data, pozytyw_samokontrola=form.pozytyw_samokontrola.data, pozytyw_koncentracja=form.pozytyw_koncentracja.data, pozytyw_koordynacja=form.pozytyw_koordynacja.data, negatyw_gra_pomimo_konsekwencji=form.negatyw_gra_pomimo_konsekwencji.data, negatyw_gra_dluzej=form.negatyw_gra_dluzej.data, negatyw_gra_nad_inne_aktywnosci=form.negatyw_gra_nad_inne_aktywnosci.data, negatyw_zaniedbania=form.negatyw_zaniedbania.data, negatyw_gniew=form.negatyw_gniew.data, tow_kontakty=form.tow_kontakty.data, tow_inni_sie_przejmuja=form.tow_inni_sie_przejmuja.data, tow_brak_towarzystwa=form.tow_brak_towarzystwa.data, tow_izolacja=form.tow_izolacja.data, tow_przytloczenie=form.tow_przytloczenie.data)
-            db.session.add(user_poll)
+        
+        if infoForm.validate_on_submit() and infoForm.gra_w_ciagu_12.data == 'nie':
+            user_poll_info = Info(rok=infoForm.rok.data, zwiazek=infoForm.zwiazek.data, praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data,)
+            db.session.add(user_poll_info)
             db.session.commit()
-       
+            return redirect(url_for('thanks_page'))
+        elif gamesForm.validate_on_submit():
+            user_poll_info = Info(rok=infoForm.rok.data, zwiazek=infoForm.zwiazek.data, praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data,)
+            db.session.add(user_poll_info)
+            db.session.commit()
+            user_poll_games= Games(gra_prof=gamesForm.gra_prof.data, gra_tydz=gamesForm.gra_tydz.data, gra_tydz_weekend=gamesForm.gra_tydz_weekend.data,gra_typ=gamesForm.gra_typ.data ,gra_ulubiona=gamesForm.gra_ulubiona.data, gra_platforma=gamesForm.gra_platforma.data, gra_klan=gamesForm.gra_klan.data, gra_grind=gamesForm.gra_grind.data, pandemia_start=gamesForm.pandemia_start.data, pandemia_gra_wiecej=gamesForm.pandemia_gra_wiecej.data, pandemia_czas=gamesForm.pandemia_czas.data, pozytyw_ucieczka=gamesForm.pozytyw_ucieczka.data, pozytyw_samokontrola=gamesForm.pozytyw_samokontrola.data, pozytyw_koncentracja=gamesForm.pozytyw_koncentracja.data, pozytyw_koordynacja=gamesForm.pozytyw_koordynacja.data, negatyw_gra_pomimo_konsekwencji=gamesForm.negatyw_gra_pomimo_konsekwencji.data, negatyw_gra_dluzej=gamesForm.negatyw_gra_dluzej.data, negatyw_gra_nad_inne_aktywnosci=gamesForm.negatyw_gra_nad_inne_aktywnosci.data, negatyw_zaniedbania=gamesForm.negatyw_zaniedbania.data, negatyw_gniew=gamesForm.negatyw_gniew.data, tow_kontakty=gamesForm.tow_kontakty.data, tow_inni_sie_przejmuja=gamesForm.tow_inni_sie_przejmuja.data, tow_brak_towarzystwa=gamesForm.tow_brak_towarzystwa.data, tow_izolacja=gamesForm.tow_izolacja.data, tow_przytloczenie=gamesForm.tow_przytloczenie.data, user_id=user_poll_info.id)
+            db.session.add(user_poll_games)
+            print(user_poll_info.id)
+            print(user_poll_games.user_id)
+            db.session.commit()
             return redirect(url_for('thanks_page'))
         else:
             flash('Uzupełnij odpowiedź!', category='error')
-    return render_template('form.html', form=form)
+        
+
+        
+    return render_template('form.html', infoForm=infoForm, gamesForm=gamesForm)
 
 
 @app.route('/thanks')

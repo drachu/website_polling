@@ -1,14 +1,19 @@
+
 from website import db
 
-class Poll(db.Model):
+class Info(db.Model):
     #Informacje o osobie //mieszane//
     id = db.Column(db.Integer(), primary_key=True)
     rok = db.Column(db.Integer(), nullable=False) #listapytho
     zwiazek = db.Column(db.String(length=10), nullable=False) #lista
     praca = db.Column(db.String(length=10), nullable=False) #tak-nie
-
-    # Czas gry //mieszane//
     gra_w_ciagu_12 = db.Column(db.String(length=10), nullable=False) #tak-nie
+    plays = db.relationship('Games')
+
+
+class Games(db.Model):
+    # Czas gry //mieszane//
+    id = db.Column(db.Integer(), primary_key=True)
     gra_prof = db.Column(db.String(length=10), nullable=False) #tak-nie
     gra_tydz = db.Column(db.Integer(), nullable=False) #lista
     gra_tydz_weekend = db.Column(db.Integer(), nullable=False) #suwak
@@ -27,7 +32,6 @@ class Poll(db.Model):
 
     #Pozytywne odczucia //mieszane//
     pozytyw_ucieczka = db.Column(db.String(length=10), nullable=False) #tak-nie
-    pozytyw_emocje = db.Column(db.String(length=30), nullable=False) #szczescie, gniew, smutek, strach
     pozytyw_samokontrola = db.Column(db.String(length=10), nullable=False) #tak-nie
     pozytyw_koncentracja = db.Column(db.Integer(), nullable=False) #1-5
     pozytyw_koordynacja = db.Column(db.Integer(), nullable=False) #1-5
@@ -45,3 +49,5 @@ class Poll(db.Model):
     tow_brak_towarzystwa = db.Column(db.String(length=30), nullable=False)
     tow_izolacja = db.Column(db.String(length=30), nullable=False)
     tow_przytloczenie = db.Column(db.String(length=30), nullable=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('info.id'), nullable=False)

@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
 body {
-  font-family: 'Bebas Neue', cursive;
   text-rendering: optimizeLegibility;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
@@ -12,6 +9,14 @@ body {
 
 p {
   margin: 5%;
+}
+
+#pollPartTwo {
+  display: none;
+}
+
+#list-example {
+  display: none;
 }
 
 .q-error {
@@ -71,28 +76,6 @@ p {
           animation-duration: 2s;
 }
 
-.grid_item_start{
-  background: whitesmoke;
-  text-align: center;
-  height: 400px;
-  margin: 20px;
-  /* line-height: 40px; */
-  -webkit-box-shadow: 10px 5px 5px black;
-          box-shadow: 10px 5px 5px black;
-  border-radius: 30px;
-}
-
-.grid_item_end{
-  background: whitesmoke;
-  text-align: center;
-  height: 170px;
-  margin: 20px;
-  /* line-height: 40px; */
-  -webkit-box-shadow: 10px 5px 5px black;
-          box-shadow: 10px 5px 5px black;
-  border-radius: 30px;
-}
-
 .grid-item:hover {
   margin: 50px 50px;
   -webkit-transform: scale(1.25);
@@ -133,7 +116,13 @@ p {
       align-content: center;
 }
 
-#form-submit {
+#form-submit-info {
+  margin: auto auto 5% auto;
+  width: 170px;
+  height: 90px;
+}
+
+#form-submit-games {
   margin: auto auto 5% auto;
   width: 170px;
   height: 90px;

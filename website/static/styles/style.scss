@@ -1,7 +1,8 @@
 $green: #7ceaa4;
 $purple: #3b3d54;
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 body {
+  font-family: 'Bebas Neue', cursive;
   text-rendering: optimizeLegibility;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
@@ -49,7 +50,8 @@ p {
 .grid-item {
   background: whitesmoke;
   text-align: center;
-  height: 300px;
+  height: 4%;
+  width: 83%;
   margin: 30px;
 
   /* line-height: 40px; */
@@ -62,9 +64,34 @@ p {
   animation-duration: 2s;
 }
 
+.grid_item_start{
+  background: whitesmoke;
+  text-align: center;
+  height: auto;
+  text-align: justify;
+  padding: 10px;
+  margin: 20px;
+  /* line-height: 40px; */
+  -webkit-box-shadow: 10px 5px 5px black;
+          box-shadow: 10px 5px 5px black;
+  border-radius: 30px;
+}
+
+.grid_item_end{
+  background: whitesmoke;
+  text-align: center;
+  height: auto;
+  text-align: justify;
+  padding-bottom:1px;
+  margin: 20px;
+  /* line-height: 40px; */
+  -webkit-box-shadow: 10px 5px 5px black;
+          box-shadow: 10px 5px 5px black;
+  border-radius: 30px;
+}
+
 .grid-item:hover {
-  margin: 50px 50px;
-  transform: scale(1.25);
+  transform: scale(1.1);
 }
 
 .btn-group {

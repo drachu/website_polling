@@ -6,7 +6,7 @@
 </div>
 {%endif%}
 <p class="text-center">{{field.label()}}</p>
-<div class="btn-group">
+<div class="btn-group" id="more-less-group">
   {% for subfield in field %} {{subfield(class_="btn-check")}}
   {{subfield.label(class_="btn btn-primary")}} {% endfor %}
 </div>

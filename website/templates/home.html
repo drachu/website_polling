@@ -1,41 +1,40 @@
-{% extends 'base.html' %}
-{% block title %}
-Powitanie
-{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %} Powitanie {% endblock %} {% block
+content %}
 
 <div class="container my-5">
-    <div class="grid_item_start">
-        <h1 class="text-center my-3 pt-2">Hej !</h1>
+  <div class="grid_item_start my-5">
+    <h1 class="text-center my-3 pt-2">Hej !</h1>
 
-
-        <h3 class="text-center mx-5 mb-5">
-            Jesteśmy studentami Inżynierii biomedycznej o specjalizacji Informatyka w medycynie.
-            W ramach zajęć "Rozwój aplikacji internetowych w medycynie" oraz "Hurtownie i eksploracja danych"
-            robimy ankietę na temat "Ocena uzaleznienia od gier komputerowych wsród studentów ETI"
-            Badanie jest dobrowolne i anonimowe. W każdej chwili możesz je przerwać.
-            <br>Badanie nie powinno trwać dłużej niż 10 minut.
-        </h3>
-        <h3 class="text-center">Słowniczek:</h3>
-        <h4 class="mx-5 mb-3">
-            <b>Grind</b> = angażowanie się gracza w powtarzalne czynności, np. w celu zdobycia punktów doświadczenia,
-            pieniędzy czy też unikalnych artefaktów.
-            <b>Streaming</b> = użytkownik udostępniaja strumień wideo (na żywo), w celu transmisji gier komputerowych
-            oraz rozgrywek sportu elektronicznego.
-        </h4>
-
-
+    <h3 class="mx-5 mb-3">
+      Jesteśmy studentami Inżynierii biomedycznej o specjalizacji Informatyka w
+      medycynie. W ramach zajęć "Rozwój aplikacji internetowych w medycynie"
+      oraz "Hurtownie i eksploracja danych" robimy ankietę na temat "Ocena
+      uzaleznienia od gier komputerowych wsród studentów ETI" Badanie jest
+      dobrowolne i anonimowe. W każdej chwili możesz je przerwać.
+      <br /><br />
+      Badanie nie powinno trwać dłużej niż 10 minut.
+    </h3>
+    <h3 class="text-center">Słowniczek:</h3>
+    <h4 class="mx-5 mb-3">
+      <b>Grind</b> = angażowanie się gracza w powtarzalne czynności, np. w celu
+      zdobycia punktów doświadczenia, pieniędzy czy też unikalnych
+      artefaktów.<br />
+      <b>Streaming</b> = użytkownik udostępniaja strumień wideo (na żywo), w
+      celu transmisji gier komputerowych oraz rozgrywek sportu elektronicznego.
+    </h4>
+  </div>
+  <div class="przycisk">
+    <div class="text-center" style="margin-top: 0px">
+      <a
+        href="{{ url_for('form_page') }}"
+        class="btn btn-lg btn-block btn-primary"
+        role="button"
+        aria-pressed="true"
+      >
+        <h2>Zacznij ankietę</h2>
+      </a>
     </div>
-    <div class="przycisk">
-        <div class="text-center" style="margin-top: 120px;">
-            <a href="{{ url_for('form_page') }}" class="btn btn-lg btn-block btn-primary" role="button"
-                aria-pressed="true">
-                <h2>Zacznij ankietę</h2>
-            </a>
-        </div>
-    </div>
+  </div>
 </div>
-
 
 {% endblock %}

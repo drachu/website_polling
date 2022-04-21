@@ -1,4 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@media (max-width: 600px) {
+  .grid-item {
+    background: whitesmoke;
+    text-align: center;
+    height: 300px;
+    margin: 30px 0 30px 0;
+    /* line-height: 40px; */
+    -webkit-box-shadow: 10px 5px 5px black;
+            box-shadow: 10px 5px 5px black;
+    border-radius: 30px;
+    -webkit-transition: all 0.4s ease-in-out 0.05s;
+    transition: all 0.4s ease-in-out 0.05s;
+    -webkit-animation-name: start-up;
+            animation-name: start-up;
+    -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+  }
+}
+
+@media (min-width: 601px) {
+  .grid-item {
+    background: whitesmoke;
+    text-align: center;
+    height: 300px;
+    margin: 30px auto 30px auto;
+    width: 65%;
+    /* line-height: 40px; */
+    -webkit-box-shadow: 10px 5px 5px black;
+            box-shadow: 10px 5px 5px black;
+    border-radius: 30px;
+    -webkit-transition: all 0.4s ease-in-out 0.05s;
+    transition: all 0.4s ease-in-out 0.05s;
+    -webkit-animation-name: start-up;
+            animation-name: start-up;
+    -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+  }
+}
+
 body {
   font-family: "Bebas Neue", cursive;
   text-rendering: optimizeLegibility;
@@ -39,8 +78,8 @@ body {
 .sideTab {
   position: fixed;
   margin: auto;
-  left: 5%;
-  top: 15%;
+  left: 2%;
+  top: 12%;
   -webkit-box-shadow: 10px 5px 5px black;
           box-shadow: 10px 5px 5px black;
   border-radius: 20px;
@@ -69,46 +108,33 @@ body {
           animation-duration: 2s;
 }
 
-.grid-item {
-  background: whitesmoke;
-  text-align: center;
-  height: 4%;
-  margin: 30px;
-  width: 83%;
-  /* line-height: 40px; */
-  -webkit-box-shadow: 10px 5px 5px black;
-          box-shadow: 10px 5px 5px black;
-  border-radius: 30px;
-  -webkit-transition: all 0.4s ease-in-out 0.05s;
-  transition: all 0.4s ease-in-out 0.05s;
-  -webkit-animation-name: start-up;
-          animation-name: start-up;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-}
-
 .grid_item_start {
   background: whitesmoke;
   text-align: center;
-  height: 400px;
+  height: auto;
+  text-align: justify;
+  padding: 10px;
   margin: 20px;
+  /* line-height: 40px; */
   -webkit-box-shadow: 10px 5px 5px black;
-          box-shadow: 10px 5px 5px black;
+  box-shadow: 10px 5px 5px black;
   border-radius: 30px;
 }
 
 .grid_item_end {
   background: whitesmoke;
   text-align: center;
-  height: 180px;
+  height: auto;
+  text-align: justify;
+  padding-bottom: 1px;
   margin: 20px;
+  /* line-height: 40px; */
   -webkit-box-shadow: 10px 5px 5px black;
-          box-shadow: 10px 5px 5px black;
+  box-shadow: 10px 5px 5px black;
   border-radius: 30px;
 }
 
 .grid-item:hover {
-  margin: 50px 0 50px 0;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -175,6 +201,7 @@ body {
   width: 80%;
   margin: 10%;
   border-radius: 60px;
+  text-align: center;
 }
 
 .list-group {

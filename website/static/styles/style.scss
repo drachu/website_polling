@@ -1,10 +1,10 @@
 $green: #7ceaa4;
 $purple: #3b3d54;
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 body {
-  font-family: 'Bebas Neue', cursive;
+  font-family: "Bebas Neue", cursive;
   text-rendering: optimizeLegibility;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
@@ -13,8 +13,9 @@ body {
   overflow-x: hidden;
 }
 
-p {
+.text-center {
   margin: 5%;
+  text-align: justify;
 }
 
 #pollPartTwo {
@@ -25,7 +26,14 @@ p {
   display: none;
 }
 
+.q-error-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 .q-error {
+  text-align: center;
+  display: table;
   height: 30px;
   background: rgb(255, 103, 103);
   border-top-left-radius: 30px;
@@ -60,8 +68,9 @@ p {
 .grid-item {
   background: whitesmoke;
   text-align: center;
-  height: 300px;
+  height: 4%;
   margin: 30px;
+  width: 83%;
 
   /* line-height: 40px; */
 
@@ -92,8 +101,8 @@ p {
 }
 
 .grid-item:hover {
-  margin: 50px 50px;
-  transform: scale(1.25);
+  margin: 50px 0 50px 0;
+  transform: scale(1.1);
 }
 
 .btn-group {
@@ -136,6 +145,7 @@ p {
   width: 80%;
   margin: 10%;
   border-radius: 60px;
+  text-align: center;
 }
 
 .form-range {

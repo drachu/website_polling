@@ -1,7 +1,9 @@
 <!-- <<<Wzory form pytań>>> -->
 
 {%macro render_radio_more_less(field)%} {%if field.errors%}
-<div class="q-error">Uzupełnij odpowiedź!</div>
+<div class="q-error">
+  <p class="q-error-text">Uzupełnij odpowiedź!</p>
+</div>
 {%endif%}
 <p class="text-center">{{field.label()}}</p>
 <div class="btn-group">
@@ -10,7 +12,9 @@
 </div>
 
 {%endmacro%} {%macro render_radio_yes_no(field)%} {%if field.errors%}
-<div class="q-error">Uzupełnij odpowiedź!</div>
+<div class="q-error">
+  <p class="q-error-text">Uzupełnij odpowiedź!</p>
+</div>
 {%endif%}
 
 <p class="text-center">{{field.label()}}</p>
@@ -22,7 +26,9 @@
 </div>
 
 {%endmacro%} {%macro render_range(field)%} {%if field.errors%}
-<div class="q-error">Uzupełnij odpowiedź!</div>
+<div class="q-error">
+  <p class="q-error-text">Uzupełnij odpowiedź!</p>
+</div>
 {%endif%}
 
 <p class="text-center">{{field.label()}}</p>
@@ -33,7 +39,9 @@
   <output>0</output>%
 </div>
 {%endmacro%} {%macro render_select(field)%} {%if field.errors%}
-<div class="q-error">Uzupełnij odpowiedź!</div>
+<div class="q-error">
+  <p class="q-error-text">Uzupełnij odpowiedź!</p>
+</div>
 {%endif%}
 
 <p class="text-center">{{field.label()}}</p>
@@ -43,7 +51,9 @@
 </div>
 
 {%endmacro%} {%macro render_text(field)%} {%if field.errors%}
-<div class="q-error">Uzupełnij odpowiedź!</div>
+<div class="q-error">
+  <p class="q-error-text">Uzupełnij odpowiedź!</p>
+</div>
 {%endif%}
 
 <p class="text-center">{{field.label()}}</p>
@@ -53,7 +63,9 @@
 </div>
 
 {%endmacro%} {%macro render_radio_numbers(field)%} {%if field.errors%}
-<div class="q-error">Uzupełnij odpowiedź!</div>
+<div class="q-error">
+  <p class="q-error-text">Uzupełnij odpowiedź!</p>
+</div>
 {%endif%}
 
 <p class="text-center">{{field.label()}}</p>
@@ -63,7 +75,9 @@
 </div>
 
 {%endmacro%} {%macro render_integer(field)%} {%if field.errors%}
-<div class="q-error">Uzupełnij odpowiedź!</div>
+<div class="q-error">
+  <p class="q-error-text">Uzupełnij odpowiedź!</p>
+</div>
 {%endif%}
 
 <p class="text-center">{{field.label()}}</p>
@@ -73,7 +87,9 @@
 <p class="text-center">{{field.label()}}</p>
 {{field(class="form-text form-text-lg mb-3 form-control", max="168", min="0")}}
 {%endmacro%} {%macro render_checkbox(field)%} {%if field.errors%}
-<div class="q-error">Uzupełnij odpowiedź!</div>
+<div class="q-error">
+  <p class="q-error-text">Uzupełnij odpowiedź!</p>
+</div>
 {%endif%}
 <p class="text-center">{{field.label()}}</p>
 <div class="form-check">

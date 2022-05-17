@@ -1,11 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
+
 import os
 from matplotlib import cm
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples, roc_curve, auc
-from scipy.spatial.distance import pdist, squareform
 from scipy.cluster.hierarchy import linkage
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -218,7 +217,7 @@ def sprawdzenieIlosciIstnonychCech(database, n_neighbors=5):
     y = database['WynikLudzki'].values
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=0, stratify=y)
+        X, y, test_size=0.025, random_state=0, stratify=y)
 
     sbs = CC.SBS(knn, k_features=5)
     sbs.fit(X_train, y_train)
@@ -245,7 +244,7 @@ def istotnoscCechLas(database, threshold=0.06):
     y = database['WynikLudzki'].values
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=0, stratify=y)
+        X, y, test_size=0.025, random_state=0, stratify=y)
     forest = RandomForestClassifier(n_estimators=500,
                                     random_state=1)
 
@@ -305,7 +304,7 @@ def PCAWymiar(database):
 
     X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
                                                         stratify=y,
                                                         random_state=0)
 
@@ -338,7 +337,7 @@ def PCAWymiar(database):
 def TestPCA(database):
     X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
                                                         stratify=y,
                                                         random_state=0)
 
@@ -354,7 +353,7 @@ def TestPCA(database):
 def TestSKF(database):
     X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
                                                         stratify=y,
                                                         random_state=0)
 
@@ -376,7 +375,7 @@ def TestSKF(database):
 def LearningCurveTest(database):
     X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
                                                         stratify=y,
                                                         random_state=0)
 
@@ -433,7 +432,7 @@ def LearningCurveTest(database):
 def PozytywNegatywTest(database):
     X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
                                                         stratify=y,
                                                         random_state=0)
     pipe_svc = make_pipeline(StandardScaler(),
@@ -459,7 +458,7 @@ def PozytywNegatywTest(database):
 def ROCTest(database):
     X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
                                                         stratify=y,
                                                         random_state=0)
 
@@ -472,7 +471,7 @@ def ROCTest(database):
 
     X_train2 = X_train
 
-    cv = list(StratifiedKFold(n_splits=3).split(X_train, y_train))
+    cv = list(StratifiedKFold(n_splits=2).split(X_train, y_train))
 
     mean_tpr = 0.0
     mean_fpr = np.linspace(0, 1, 100)

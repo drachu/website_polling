@@ -1,0 +1,45 @@
+id,gra_prof,gra_tydz,gra_tydz_weekend,gra_typ,gra_ulubiona,gra_platforma,gra_klan,gra_grind,pandemia_start,pandemia_gra_wiecej,pandemia_czas,pozytyw_ucieczka,pozytyw_samokontrola,pozytyw_koncentracja,pozytyw_koordynacja,negatyw_gra_pomimo_konsekwencji,negatyw_gra_dluzej,negatyw_gra_nad_inne_aktywnosci,negatyw_zaniedbania,negatyw_gniew,tow_kontakty,tow_inni_sie_przejmuja,tow_brak_towarzystwa,tow_izolacja,tow_przytloczenie,user_id
+1,nie,20,30,offline,project zomboid,pc,nie,nie,poza,tak,nie,tak,tak,4,4,czasami,czesto,zawsze,czasami,rzadko,3,rzadko,rzadko,rzadko,nigdy,1
+2,nie,10,50,online,ARK Survival Evolved,pc,nie,tak,poza,tak,tak,tak,tak,4,4,czasami,czesto,czasami,czasami,rzadko,3,czasami,czesto,czesto,rzadko,2
+3,nie,30,15,online,Cs:Go,pc,tak,nie,poza,tak,nie,nie,nie,3,3,czasami,czesto,czesto,czesto,zawsze,3,czesto,czasami,rzadko,nigdy,3
+4,nie,8,30,online,Valheim <3 ,pc,nie,nie,poza,tak,nie,nie,tak,4,4,czasami,czesto,rzadko,czasami,zawsze,5,czasami,rzadko,nigdy,nigdy,4
+5,nie,2,100,offline,The sims 4,pc,nie,nie,poza,tak,tak,tak,tak,3,4,czasami,czesto,rzadko,czasami,rzadko,4,czasami,czasami,czasami,rzadko,5
+6,nie,1,100,offline,The sims,pc,nie,tak,poza,nie,nie,nie,tak,3,3,rzadko,czasami,nigdy,rzadko,nigdy,4,czasami,czesto,czasami,nigdy,6
+7,nie,1,100,offline,Getting over it with Bennett foddy,pc,nie,nie,poza,tak,tak,tak,tak,5,5,rzadko,czasami,nigdy,nigdy,rzadko,5,nigdy,nigdy,nigdy,nigdy,7
+8,nie,10,26,offline,Red dead redemption 2,pc,nie,tak,poza,tak,tak,tak,tak,3,4,czasami,czesto,czasami,czasami,czasami,4,nigdy,rzadko,rzadko,rzadko,8
+9,nie,10,43,online,Lol,pc,nie,nie,poza,tak,tak,tak,tak,4,4,rzadko,czasami,rzadko,czasami,czasami,5,rzadko,rzadko,rzadko,rzadko,9
+10,nie,201,45,online,Subway surfers,pc,nie,tak,poza,tak,tak,tak,nie,4,2,zawsze,zawsze,zawsze,nigdy,czesto,1,czasami,zawsze,zawsze,rzadko,10
+11,nie,15,30,offline,CK3,pc,tak,nie,poza,nie,nie,tak,nie,4,3,czasami,czesto,czasami,czasami,rzadko,4,rzadko,rzadko,rzadko,rzadko,11
+12,nie,15,30,offline,CK3,pc,tak,nie,poza,nie,nie,tak,nie,4,3,czasami,czesto,czasami,czasami,rzadko,4,rzadko,rzadko,rzadko,rzadko,12
+13,nie,12,48,online,Gacha porn games,pc,nie,tak,poza,tak,tak,nie,tak,4,3,czasami,czesto,czesto,czasami,rzadko,4,czasami,rzadko,nigdy,rzadko,13
+14,nie,20,40,online,WWZ,pc,nie,tak,poza,tak,tak,tak,tak,5,4,nigdy,czesto,rzadko,rzadko,czesto,4,rzadko,rzadko,rzadko,nigdy,15
+15,nie,15,25,online,Dota 2,pc,nie,nie,poza,tak,tak,tak,tak,3,4,rzadko,czasami,rzadko,nigdy,rzadko,5,rzadko,nigdy,nigdy,nigdy,16
+16,nie,30,22,online,Cs,pc,nie,nie,poza,tak,tak,nie,tak,3,4,czesto,czesto,zawsze,czesto,czasami,5,nigdy,rzadko,nigdy,czasami,17
+17,nie,16,30,online,Valorant,pc,nie,nie,poza,tak,tak,tak,tak,3,4,czasami,czesto,czasami,czasami,rzadko,4,rzadko,czasami,rzadko,rzadko,18
+18,nie,5,20,offline,Horizon,pc,nie,tak,poza,nie,tak,tak,tak,2,4,czesto,czesto,rzadko,nigdy,czasami,2,rzadko,czesto,czasami,czasami,19
+19,nie,10,26,online,Liga,pc,tak,tak,poza,nie,tak,nie,nie,1,1,czesto,czesto,czasami,czasami,czesto,4,rzadko,rzadko,rzadko,rzadko,20
+20,nie,20,38,offline,League of legends,pc,nie,tak,poza,tak,tak,tak,tak,5,5,czasami,czesto,czasami,czesto,rzadko,5,nigdy,nigdy,nigdy,rzadko,21
+21,nie,30,15,online,Poe,pc,nie,tak,poza,tak,tak,tak,tak,4,4,rzadko,rzadko,nigdy,nigdy,czesto,5,rzadko,rzadko,nigdy,nigdy,22
+22,nie,10,56,offline,"Hoi4, heroes3",pc,nie,nie,poza,tak,tak,tak,tak,4,4,rzadko,czasami,czasami,rzadko,czasami,4,nigdy,rzadko,rzadko,nigdy,23
+23,nie,50,69,online,League of legends ,pc,tak,tak,poza,nie,nie,tak,tak,5,5,zawsze,zawsze,zawsze,zawsze,zawsze,1,zawsze,nigdy,zawsze,nigdy,24
+24,nie,40,25,online,Wiedźmin 3,pc,tak,tak,poza,tak,tak,tak,tak,5,5,rzadko,rzadko,czesto,czasami,zawsze,5,rzadko,czesto,czesto,nigdy,25
+25,nie,5,77,online,League of legends,pc,nie,tak,poza,nie,tak,tak,tak,2,2,czesto,czesto,czesto,czasami,czasami,2,czasami,czasami,czesto,zawsze,27
+26,nie,10,20,online,Lol,pc,tak,tak,poza,nie,nie,tak,tak,4,5,rzadko,czesto,czasami,czasami,rzadko,4,czasami,czesto,czasami,rzadko,28
+27,nie,10,81,offline,Stardew valley,pc,nie,tak,poza,nie,tak,tak,tak,5,5,rzadko,czesto,czasami,rzadko,rzadko,3,czesto,czesto,czasami,rzadko,29
+28,nie,24,70,online,Hearts of iron 4,pc,tak,tak,poza,tak,tak,tak,tak,5,5,rzadko,czesto,czasami,rzadko,czasami,5,rzadko,rzadko,rzadko,nigdy,30
+29,nie,9,20,online,Rocket league,pc,nie,tak,poza,tak,tak,tak,tak,3,3,rzadko,rzadko,czesto,rzadko,czasami,4,czesto,czasami,czasami,rzadko,31
+30,nie,16,49,online,Overwatch,pc,nie,tak,poza,nie,tak,tak,tak,5,4,czasami,czesto,czasami,rzadko,rzadko,3,czasami,czasami,czasami,czasami,32
+31,tak,7,100,online,asdfjk,pc,tak,tak,w_czasie,nie,nie,nie,tak,5,4,zawsze,rzadko,czesto,zawsze,zawsze,3,zawsze,rzadko,czesto,czasami,33
+32,nie,5,40,online,Ghotic,pc,nie,nie,poza,tak,tak,nie,nie,3,4,czesto,czasami,rzadko,czasami,czasami,4,czasami,czasami,rzadko,rzadko,34
+33,nie,40,60,online,Elder Scrolls online,pc,tak,tak,poza,tak,tak,tak,nie,4,3,zawsze,zawsze,czesto,czesto,czasami,3,czesto,czesto,czasami,nigdy,35
+34,nie,3,49,online,League of legends,pc,nie,tak,poza,tak,tak,nie,tak,4,4,rzadko,czesto,rzadko,czasami,rzadko,4,rzadko,rzadko,nigdy,nigdy,36
+35,nie,1,18,offline,Simsy,pc,nie,tak,poza,nie,tak,nie,nie,1,3,rzadko,czasami,nigdy,rzadko,czasami,4,czasami,czasami,rzadko,czasami,38
+36,nie,60,50,online,Ark survival evolved ,mobile,tak,tak,poza,nie,tak,tak,tak,5,5,czasami,czesto,czasami,czesto,czasami,4,rzadko,rzadko,rzadko,nigdy,39
+37,nie,1,21,online,Magnum quest ,mobile,tak,tak,w_czasie,tak,tak,tak,tak,3,3,rzadko,rzadko,nigdy,rzadko,rzadko,5,nigdy,rzadko,rzadko,nigdy,40
+38,nie,50,35,online,Ark survival evolved,mobile,tak,tak,poza,tak,tak,tak,tak,4,4,rzadko,czasami,nigdy,nigdy,rzadko,5,rzadko,nigdy,nigdy,nigdy,41
+39,nie,5,17,online,Clash royale,mobile,tak,tak,poza,nie,tak,nie,nie,4,2,rzadko,czesto,rzadko,czasami,czesto,4,czasami,czasami,rzadko,czasami,42
+40,nie,20,50,online,Counter-Strike ,pc,tak,nie,poza,nie,nie,tak,tak,5,5,czasami,czesto,rzadko,czasami,rzadko,5,nigdy,nigdy,nigdy,nigdy,44
+41,nie,50,28,online,Pokexgames,pc,tak,tak,poza,tak,tak,tak,nie,4,3,rzadko,czesto,czesto,zawsze,czesto,4,nigdy,czasami,nigdy,nigdy,45
+42,nie,15,50,online,Starcraft 2,pc,nie,nie,poza,tak,tak,tak,tak,4,4,rzadko,czasami,rzadko,rzadko,czasami,4,rzadko,nigdy,nigdy,nigdy,46
+43,nie,2,63,offline,Wiedźmin,pc,nie,nie,poza,nie,tak,tak,tak,4,4,nigdy,czasami,nigdy,rzadko,czasami,4,rzadko,rzadko,rzadko,nigdy,47
+44,nie,20,29,online,Tft,pc,nie,tak,poza,nie,tak,tak,tak,5,5,rzadko,czasami,rzadko,czasami,rzadko,5,nigdy,nigdy,nigdy,rzadko,48

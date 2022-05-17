@@ -1,0 +1,75 @@
+{
+	"flow_name" : "PreProcessData",
+	"steps" : [
+		{
+			"class" : "weka.knowledgeflow.steps.Loader",
+			"properties" : {
+				"loader" : {
+					"type" : "loader",
+					"class" : "weka.core.converters.CSVLoader",
+					"filePath" : "C:/Pliki/Visual Code/website_polling/Analiza_wynikow/games.csv",
+					"useRelativePath" : false,
+					"options" : "-format \"yyyy-MM-dd\\'T\\'HH:mm:ss\" -M ? -B 100 -E \"\\\",\\'\" -F ,"
+				},
+				"name" : "CSVLoader_Games"
+			},
+			"connections" : {
+				"dataSet" : [
+					"Join"
+				]
+			},
+			"coordinates" : "32,54"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Loader",
+			"properties" : {
+				"loader" : {
+					"type" : "loader",
+					"class" : "weka.core.converters.CSVLoader",
+					"filePath" : "C:/Pliki/Visual Code/website_polling/Analiza_wynikow/info.csv",
+					"useRelativePath" : false,
+					"options" : "-format \"yyyy-MM-dd\\'T\\'HH:mm:ss\" -M ? -B 100 -E \"\\\",\\'\" -F ,"
+				},
+				"name" : "CSVLoader_Info"
+			},
+			"connections" : {
+				"dataSet" : [
+					"Join"
+				]
+			},
+			"coordinates" : "34,218"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Join",
+			"properties" : {
+				"keySpec" : "user_id@@KS@@id",
+				"name" : "Join"
+			},
+			"connections" : {
+				"dataSet" : [
+					"CSVSaver"
+				]
+			},
+			"coordinates" : "138,159"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Saver",
+			"properties" : {
+				"name" : "CSVSaver",
+				"relationNameForFilename" : true,
+				"saver" : {
+					"type" : "saver",
+					"class" : "weka.core.converters.CSVSaver",
+					"filePath" : "",
+					"dir" : "C:/Users/kubow/Desktop",
+					"prefix" : "DataBaseCSV",
+					"useRelativePath" : false,
+					"options" : "-F , -M ? -decimal 6"
+				}
+			},
+			"connections" : {
+			},
+			"coordinates" : "292,158"
+		}
+	]
+}

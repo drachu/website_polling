@@ -189,7 +189,7 @@ def DecisionTree(database, feature_names, class_names,image_name, criterion='gin
     y = database['WynikLudzki'].values
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.1, random_state=0, stratify=y)
+        X, y, test_size=0.025, random_state=0, stratify=y)
     tree_model.fit(X_train, y_train)
 
     #tree.plot_tree(tree_model)

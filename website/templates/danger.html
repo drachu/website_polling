@@ -1,0 +1,421 @@
+{% extends 'base.html' %} {% block title %} Podziękowanie {% endblock %} {%
+block content %}
+<div class="background-gradient">
+  <div class="container my-5">
+    <div class="grid_item_end">
+      <h1 class="text-center my-4 pt-2">Dziękujemy za wypełnienie ankiety</h1>
+      <h2 class="mx-5 mb-5">
+        Wstępnie ziagnozowano u Ciebie uzależnienie od gier!
+      </h2>
+      <h3 class="mx-5 mb-5"></h3>
+      <h2 class="mx-5 mb-5">Zobacz jak odpowiadali inni!</h2>
+    </div>
+  </div>
+
+  <div class="container my-5" id="left-side">
+    <div class="grid_item_end">
+      <div class="row">
+        <div class="col">
+          <canvas id="gra_w_ciagu_12"></canvas>
+        </div>
+        <div class="col col-text">
+          Zgodnie z przewidywaniami jednak większość osób chociaż w wolnej
+          chwili sięga do gier. Niezaleznie od roku studiów, czy też od statusu
+          w związku - ludzie w zdecydowanej większość lubią sobie po prostu
+          pograć.
+        </div>
+      </div>
+
+      <script>
+         let gra_w_ciagu_12_data = JSON.parse({{gra_w_ciagu_12 | tojson}});
+
+        let gra_w_ciagu_12_chart = new Chart(gra_w_ciagu_12, {
+            type: 'doughnut',
+            data: {
+                labels: ['Nie', 'Tak'],
+                datasets: [{
+                    data: gra_w_ciagu_12_data,
+                    backgroundColor: ['#FAD7D7', '#BD0707'],
+
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Czy grałeś w ciągu ostatnich 12 miesięcy?",
+                        fontFamily: "Bebas Neue"
+
+                    }
+                },
+                legend: {
+                    position: "bottom",
+                    labels: {
+                          font: {
+                            size: 100,
+                            fontfamily: "Times New Roman"
+                      }
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+            }
+        })
+      </script>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <div class="grid_item_end">
+      <br />
+      <h2 class="mx-5 mb-5">
+        Jak wyglądaly najbardziej wyróżniające negatywne cechy?
+      </h2>
+      <div class="row">
+        <div class="col">
+          <canvas id="gra_gniew"></canvas>
+        </div>
+        <div class="col">
+          <canvas id="negatyw_zaniedbania"></canvas>
+        </div>
+        <div class="col">
+          <canvas id="negatyw_gra_nad_inne_aktywnosci"></canvas>
+        </div>
+      </div>
+
+      <script>
+
+        let gra_gniew_values = JSON.parse({{gra_gniew_values | tojson}});
+
+        let gra_gniew_chart = new Chart(gra_gniew, {
+            type: 'polarArea',
+            data: {
+                labels: ["Nigdy", "Rzadko", "Czasami", "Często", "Zawsze"],
+                datasets: [{
+                    data: gra_gniew_values,
+                    backgroundColor: ['#FAD7D7', '#FCA1A1', '#FC6B6B', '#FC3D3D', '#BD0707'],
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Zdarzało Ci sie wpadać w gniew podczas gry i porażki?"
+                    }
+                },
+                legend: {
+                    position: "right",
+                    labels: {
+                        fontColor: "black"
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+
+
+            }
+        })
+
+        let negatyw_zaniedbania_data = JSON.parse({{negatyw_zaniedbania_values | tojson}});
+
+        let negatyw_zaniedbania_chart = new Chart(negatyw_zaniedbania, {
+            type: 'polarArea',
+            data: {
+                labels: ["Nigdy", "Rzadko", "Czasami", "Często", "Zawsze"],
+                datasets: [{
+                    data: negatyw_zaniedbania_data,
+                    backgroundColor: ['#FAD7D7', '#FCA1A1', '#FC6B6B', '#FC3D3D', '#BD0707'],
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Czy grając w gry zaniedbywałeś/aś naukę lub inne obowiązki?"
+                    }
+                },
+                legend: {
+                    position: "right",
+                    labels: {
+                        fontColor: "black"
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+
+
+            }
+        })
+
+        let negatyw_gra_nad_inne_aktywnosci_data = JSON.parse({{negatyw_gra_nad_inne_aktywnosci_values | tojson}});
+
+        let negatyw_gra_nad_inne_aktywnosci_chart = new Chart(negatyw_gra_nad_inne_aktywnosci, {
+            type: 'polarArea',
+            data: {
+                labels: ["Nigdy", "Rzadko", "Czasami", "Często", "Zawsze"],
+                datasets: [{
+                    data: negatyw_gra_nad_inne_aktywnosci_data,
+                    backgroundColor: ['#FAD7D7', '#FCA1A1', '#FC6B6B', '#FC3D3D', '#BD0707'],
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Więcej uwagi poświecasz grom niż innym zainteresowaniom?"
+                    }
+                },
+                legend: {
+                    position: "right",
+                    labels: {
+                        fontColor: "black"
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+
+
+            }
+        })
+      </script>
+    </div>
+  </div>
+
+  <div class="container my-5" id="right-side">
+    <div class="grid_item_end">
+      <div class="row">
+        <div class="col col-text-right">
+          W obecnych czasach gry online górują, jeśli chodzi o ten sposób
+          rozgrywki. Chęć wspólnych przygód czy potrzeba konkurencji często
+          przyciąga przed ekran silniej niż ciekawa przygoda fabularna w trybie
+          jednoosobowym.
+        </div>
+        <div class="col">
+          <canvas id="gra_typ"></canvas>
+        </div>
+      </div>
+
+      <script>
+          let gra_typ_data = JSON.parse({{gra_typ_values | tojson}});
+
+        let gra_typ_chart = new Chart(gra_typ, {
+            type: 'doughnut',
+            data: {
+                labels: ['Offline', 'Online'],
+                datasets: [{
+                    data: gra_typ_data,
+                    backgroundColor: ['#FAD7D7', '#BD0707'],
+
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Jakiego typu gry grasz?",
+                        fontFamily: "Bebas Neue"
+
+                    }
+                },
+                legend: {
+                    position: "bottom",
+                    labels: {
+                          font: {
+                            size: 100,
+                            fontfamily: "Times New Roman"
+                      }
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+            }
+        })
+      </script>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <div class="grid_item_end">
+      <br />
+      <h2 class="mx-5 mb-5">
+        Jak wyglądaly najbardziej wyróżniające pozytywne cechy?
+      </h2>
+      <div class="row">
+        <div class="col">
+          <canvas id="pozytyw_koncentracja"></canvas>
+        </div>
+        <div class="col">
+          <canvas id="pozytyw_samokontrola"></canvas>
+        </div>
+        <div class="col">
+          <canvas id="pozytyw_koordynacja"></canvas>
+        </div>
+      </div>
+      <script>
+         let pozytyw_koncentracja_data = JSON.parse({{pozytyw_koncentracja_values | tojson}});
+
+        let pozytyw_koncentracja_chart = new Chart(pozytyw_koncentracja, {
+            type: 'polarArea',
+            data: {
+                labels: ['1', '2', '3', '4', '5'],
+                datasets: [{
+                    data: pozytyw_koncentracja_data,
+                    backgroundColor: ['#FAD7D7', '#FCA1A1', '#FC6B6B', '#FC3D3D', '#BD0707'],
+
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Podczas gier czułeś/aś większą koncentrację?"
+
+                    }
+                },
+                legend: {
+                    position: "right",
+                    labels: {
+                          font: {
+                            size: 100,
+                            family: "Times New Roman"
+                      }
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+            }
+        })
+
+         let pozytyw_samokontrola_data = JSON.parse({{pozytyw_samokontrola_values | tojson}});
+
+        let pozytyw_samokontrola_chart = new Chart(pozytyw_samokontrola, {
+            type: 'doughnut',
+            data: {
+                labels: ['Nie', 'Tak'],
+                datasets: [{
+                    data: pozytyw_samokontrola_data,
+                    backgroundColor: ['#FAD7D7', '#BD0707'],
+
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Czy grając w gry potrafileś/aś zachować samokontrolę?"
+
+                    }
+                },
+                legend: {
+                    position: "right",
+                    labels: {
+                          font: {
+                            size: 100,
+                            family: "Times New Roman"
+                      }
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+            }
+        })
+
+        let pozytyw_koordynacja_data = JSON.parse({{pozytyw_koordynacja_values | tojson}});
+
+        let pozytyw_koordynacja_chart = new Chart(pozytyw_koordynacja, {
+            type: 'polarArea',
+            data: {
+                labels: ['1', '2', '3', '4', '5'],
+                datasets: [{
+                    data: pozytyw_koordynacja_data,
+                    backgroundColor: ['#FAD7D7', '#FCA1A1', '#FC6B6B', '#FC3D3D', '#BD0707'],
+
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Podczas gier czułeś/aś większą koordynację?"
+
+                    }
+                },
+                legend: {
+                    position: "right",
+                    labels: {
+                          font: {
+                            size: 100,
+                            family: "Times New Roman"
+                      }
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+            }
+        })
+      </script>
+    </div>
+  </div>
+</div>
+{% endblock %}

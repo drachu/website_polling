@@ -2,9 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 import os
-from matplotlib import cm
 from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_samples, roc_curve, auc
+from sklearn.metrics import roc_curve, auc
 from scipy.cluster.hierarchy import linkage
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -22,7 +21,6 @@ from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import learning_curve
-from sklearn.metrics import confusion_matrix
 from numpy import interp
 from scipy import interp
 from sklearn.feature_selection import SelectFromModel
@@ -35,13 +33,6 @@ PcMobileMap = {'pc': 1, 'mobile': 0}
 PozaWCzasieMap = {'poza': 1, 'w_czasie': 0}
 NigdyZawszeMap = {'nigdy': 1, 'rzadko': 2,
                   'czasami': 3, 'czesto': 4, 'zawsze': 5}
-
-"""Slowniki odwrotne"""
-TakNieMapINV = {v: k for k, v in TakNieMap.items()}
-OnOffMapINV = {v: k for k, v in OnOffMap.items()}
-PcMobileMapINV = {v: k for k, v in PcMobileMap.items()}
-PozaWCzasieMapINV = {v: k for k, v in PozaWCzasieMap.items()}
-NigdyZawszeMapINV = {v: k for k, v in NigdyZawszeMap.items()}
 
 
 def MapStringToInt(database):
@@ -80,12 +71,6 @@ def MapStringToInt(database):
     return database
 
 
-def PrintHoursPerWeek(database):
-    print("Min: ", np.min(database['gra_tydz'].values))
-    print("Max: ", np.max(database['gra_tydz'].values))
-    print("Avg: ", round(np.average(database['gra_tydz'].values), 2))
-
-
 def AddBinaryClass(database, BitValue):
     ValueList = []
     for value in database['gra_tydz']:
@@ -110,21 +95,6 @@ def PreProcess(database, columnsToDrop):
     return database
 
 
-def EncodeLabel(database, columnToTransform, LabelEnc):
-
-    for name in columnToTransform:
-
-        database[name] = LabelEnc.fit_transform(database[name].values)
-
-    return database
-
-
-def UnEncodeLabel(database, columnToTransform, LabelEnc):
-    for name in columnToTransform:
-        database[name] = LabelEnc.inverse_transform(database[name])
-    return database
-
-
 def skupieniaLokiec(database):
     distortions = []
     for i in range(1, 42):
@@ -139,49 +109,8 @@ def skupieniaLokiec(database):
     plt.tight_layout()
     plt.show()
 
-# Metoda do sprawdzania jakosci analizy skupien za pomoca wykresu profilu
 
-
-def analizaSkupien(database, ilosc_centroidow):
-    km = KMeans(n_clusters=ilosc_centroidow,
-                init='k-means++',
-                n_init=10,
-                max_iter=300,
-                tol=1e-04,
-                random_state=0)
-    y_km = km.fit_predict(database)
-
-    cluster_labels = np.unique(y_km)
-    n_clusters = cluster_labels.shape[0]
-    silhouette_vals = silhouette_samples(database, y_km, metric='euclidean')
-    y_ax_lower, y_ax_upper = 0, 0
-    yticks = []
-    for i, c in enumerate(cluster_labels):
-        c_silhouette_vals = silhouette_vals[y_km == c]
-        c_silhouette_vals.sort()
-        y_ax_upper += len(c_silhouette_vals)
-        color = cm.jet(float(i) / n_clusters)
-        plt.barh(range(y_ax_lower, y_ax_upper), c_silhouette_vals, height=1.0,
-                 edgecolor='none', color=color)
-
-        yticks.append((y_ax_lower + y_ax_upper) / 2.)
-        y_ax_lower += len(c_silhouette_vals)
-
-    silhouette_avg = np.mean(silhouette_vals)
-
-    print('Dokladnosc KMean++: ',km.score(database))
-
-    plt.axvline(silhouette_avg, color="red", linestyle="--")
-
-    plt.yticks(yticks, cluster_labels + 1)
-    plt.ylabel('Skupienie/Grupa')
-    plt.xlabel('Wspolczynnik profilu')
-
-    plt.tight_layout()
-    plt.show()
-
-
-def DecisionTree(database, feature_names, class_names,image_name, criterion='gini', max_deph=5, random_state=1,max_features=None):
+def DecisionTree(database, feature_names, class_names, image_name, criterion='gini', max_deph=5, random_state=1, max_features=None):
     tree_model = DecisionTreeClassifier(
         criterion=criterion, max_depth=max_deph, random_state=random_state, max_features=max_features)
     X = database.iloc[:, :-1].values
@@ -191,13 +120,12 @@ def DecisionTree(database, feature_names, class_names,image_name, criterion='gin
         X, y, test_size=0.025, random_state=0, stratify=y)
     tree_model.fit(X_train, y_train)
 
-    #tree.plot_tree(tree_model)
-    #plt.show()
-    print('Dokladnosc Drzewa Decyzyjnego: ',tree_model.score(X_train,y_train))
-    SaveImageDecisionTree(tree_model, feature_names, class_names,image_name)
+    print('Dokladnosc Drzewa Decyzyjnego: ',
+          tree_model.score(X_train, y_train))
+    SaveImageDecisionTree(tree_model, feature_names, class_names, image_name)
 
 
-def SaveImageDecisionTree(tree_model, feature_names, class_names,image_name):
+def SaveImageDecisionTree(tree_model, feature_names, class_names, image_name):
     os.environ["PATH"] += os.pathsep + 'C:\Programy\Graphviz/bin/'
 
     dot_data = export_graphviz(tree_model,
@@ -294,60 +222,10 @@ def Dendogram(database):
     row_clusters = linkage(
         database.values, method='complete', metric='euclidean')
 
-    row_dendr = dendrogram(row_clusters,labels=labels,color_threshold=np.inf)
+    row_dendr = dendrogram(row_clusters, labels=labels, color_threshold=np.inf)
     plt.tight_layout()
     plt.ylabel('odleglosc Euklidesowa')
     plt.show()
-
-
-def PCAWymiar(database):
-
-    X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
-                                                        stratify=y,
-                                                        random_state=0)
-
-    sc = StandardScaler()
-    X_train_std = sc.fit_transform(X_train)
-    X_test_std = sc.transform(X_test)
-
-    pca = PCA(n_components=2)
-    lr = LogisticRegression(multi_class='ovr', random_state=1, solver='lbfgs')
-
-    X_train_pca = pca.fit_transform(X_train_std)
-    X_test_pca = pca.transform(X_test_std)
-
-    lr.fit(X_train_pca, y_train)
-    plot_decision_regions(X_train_pca, y_train, classifier=lr)
-    plt.xlabel('GS1')
-    plt.ylabel('GS2')
-    plt.legend(loc='lower left')
-    plt.tight_layout()
-    plt.show()
-
-    plot_decision_regions(X_test_pca, y_test, classifier=lr)
-    plt.xlabel('GS1')
-    plt.ylabel('GS2')
-    plt.legend(loc='lower left')
-    plt.tight_layout()
-    plt.show()
-
-
-def TestPCA(database):
-    X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
-                                                        stratify=y,
-                                                        random_state=0)
-
-    pipe_lr = make_pipeline(StandardScaler(),
-                            PCA(n_components=2),
-                            LogisticRegression(random_state=1, solver='lbfgs'))
-
-    pipe_lr.fit(X_train, y_train)
-    y_pred = pipe_lr.predict(X_test)
-    print('Test dokladnosc: %.2f' % (pipe_lr.score(X_test, y_test)*100), ' %')
 
 
 def TestSKF(database):
@@ -426,32 +304,6 @@ def LearningCurveTest(database):
     plt.ylim([0.4, 1.03])
     plt.tight_layout()
 
-    plt.show()
-
-
-def PozytywNegatywTest(database):
-    X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
-                                                        stratify=y,
-                                                        random_state=0)
-    pipe_svc = make_pipeline(StandardScaler(),
-                             SVC(random_state=1))
-    pipe_svc.fit(X_train, y_train)
-    y_pred = pipe_svc.predict(X_test)
-    confmat = confusion_matrix(y_true=y_test, y_pred=y_pred)
-    print(confmat)
-
-    fig, ax = plt.subplots(figsize=(2.5, 2.5))
-    ax.matshow(confmat, cmap=plt.cm.Blues, alpha=0.3)
-    for i in range(confmat.shape[0]):
-        for j in range(confmat.shape[1]):
-            ax.text(x=j, y=i, s=confmat[i, j], va='center', ha='center')
-
-    plt.xlabel('Kolumna predykcji')
-    plt.ylabel('Kolumna prawdy')
-
-    plt.tight_layout()
     plt.show()
 
 
@@ -542,3 +394,7 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                     edgecolor='black',
                     marker=markers[idx],
                     label=cl)
+
+
+def saveDataFrame(df):
+    df.to_pickle('DataFrame.pkl')

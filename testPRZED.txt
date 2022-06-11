@@ -1,0 +1,5 @@
+    gra_prof  gra_tydz_weekend  gra_typ  gra_platforma  gra_klan  ...  tow_izolacja  tow_przytloczenie  rok  zwiazek  praca
+ 0       NaN                30      NaN            NaN       NaN  ...           NaN                NaN    3      NaN    NaN
+-1       1.0                48      1.0            3.0       1.0  ...           3.0                3.0    3      1.0    1.0
+
+[2 rows x 26 columns]

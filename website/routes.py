@@ -48,7 +48,7 @@ def form_page():
             odp_array = MF.getDataFrame(emptyDataFrame, odp_list)
 
             wynik = MF.predictUser(odp_array)
-            print("WYNIK!!!!!", wynik)
+            print("WYNIK!!!!", wynik)
 
             user_poll_info = Info(rok=infoForm.rok.data, zwiazek=infoForm.zwiazek.data,
                                   praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data,

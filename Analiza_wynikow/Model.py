@@ -17,13 +17,18 @@ def CreateModel(database):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.25, random_state=101, stratify=y)
 
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.fit_transform(X_test)
+    y_train_scaled = scaler.fit_transform(y_train)
+    y_test_scaled = scaler.fit_transform(y_test)
+
     forest = RandomForestClassifier(n_estimators=3703,
                                     random_state=101)
 
     forest.fit(X_train, y_train)
     print(forest.score(X_test, y_test))
 
-    SaveModel(forest)
+    # SaveModel(forest)
 
 
 def SaveModel(model):

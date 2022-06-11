@@ -19,6 +19,12 @@
 }
 
 @media (min-width: 601px) {
+  #left-side {
+    padding-right: 30%;
+  }
+  #right-side {
+    padding-left: 30%;
+  }
   .grid-item {
     background: whitesmoke;
     text-align: center;
@@ -145,6 +151,10 @@ body {
           animation: transparent 3s;
 }
 
+h2 {
+  text-align: center;
+}
+
 #group-numbers {
   margin: 0% 6% 0% 6%;
 }
@@ -212,8 +222,26 @@ body {
   height: 20px;
   -webkit-transition: all 0.4s ease-in-out 0.05s;
   transition: all 0.4s ease-in-out 0.05s;
-  -webkit-animation-name: start-up-tab;
-          animation-name: start-up-tab;
+  -webkit-animation-name: start-up;
+          animation-name: start-up;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+
+.container {
+  -webkit-transition: all 0.4s ease-in-out 0.05s;
+  transition: all 0.4s ease-in-out 0.05s;
+  -webkit-animation-name: start-up;
+          animation-name: start-up;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+
+.grid_item_end {
+  -webkit-transition: all 0.4s ease-in-out 0.05s;
+  transition: all 0.4s ease-in-out 0.05s;
+  -webkit-animation-name: start-up;
+          animation-name: start-up;
   -webkit-animation-duration: 2s;
           animation-duration: 2s;
 }
@@ -256,6 +284,61 @@ body {
   }
   100% {
   }
+}
+
+.background-gradient {
+  background: linear-gradient(-45deg, #601a1a, #b82e2e, #ff9b9b);
+  height: 100%;
+  width: 100%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  -webkit-animation: gradient 1s ease infinite;
+          animation: gradient 1s ease infinite;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.col {
+  margin: auto;
+  padding-bottom: 2%;
+}
+
+.col-text {
+  text-align: justify;
+  margin-right: 10%;
+  font-size: larger;
+}
+
+.col-text-right {
+  text-align: justify;
+  margin-left: 10%;
+  font-size: larger;
+}
+
+canvas {
+  margin: auto;
 }
 
 .area {

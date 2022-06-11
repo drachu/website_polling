@@ -22,6 +22,14 @@ $purple: #3b3d54;
   }
 }
 @media (min-width: 601px) {
+  #left-side {
+    padding-right: 30%;
+  }
+
+  #right-side {
+    padding-left: 30%;
+  }
+
   .grid-item {
     background: whitesmoke;
     text-align: center;
@@ -137,6 +145,10 @@ body {
   animation: transparent 3s;
 }
 
+h2 {
+  text-align: center;
+}
+
 #group-numbers {
   margin: 0% 6% 0% 6%;
 }
@@ -195,7 +207,19 @@ body {
 .list-group-item {
   height: 20px;
   transition: all 0.4s ease-in-out 0.05s;
-  animation-name: start-up-tab;
+  animation-name: start-up;
+  animation-duration: 2s;
+}
+
+.container {
+  transition: all 0.4s ease-in-out 0.05s;
+  animation-name: start-up;
+  animation-duration: 2s;
+}
+
+.grid_item_end {
+  transition: all 0.4s ease-in-out 0.05s;
+  animation-name: start-up;
   animation-duration: 2s;
 }
 
@@ -216,6 +240,48 @@ body {
   }
   100% {
   }
+}
+
+.background-gradient {
+  background: linear-gradient(-45deg, #601a1a, #b82e2e, #ff9b9b);
+  height: 100%;
+  width: 100%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  animation: gradient 1s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.col {
+  margin: auto;
+  padding-bottom: 2%;
+}
+
+.col-text {
+  text-align: justify;
+  margin-right: 10%;
+  font-size: larger;
+}
+
+.col-text-right {
+  text-align: justify;
+  margin-left: 10%;
+  font-size: larger;
+}
+
+canvas {
+  margin: auto;
 }
 
 .area {

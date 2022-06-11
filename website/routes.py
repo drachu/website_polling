@@ -5,6 +5,7 @@ from website.models import Info, Games
 from website import db
 from flask_sqlalchemy import SQLAlchemy
 import json
+import website.MyFunctions as MF
 
 
 @app.route('/')

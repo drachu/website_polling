@@ -23,18 +23,37 @@ def form_page():
     if request.method == 'POST':
 
         if infoForm.validate_on_submit() and infoForm.gra_w_ciagu_12.data == 'nie':
+
             user_poll_info = Info(rok=infoForm.rok.data, zwiazek=infoForm.zwiazek.data,
-                                  praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data,)
+                                  praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data, uzaleznienie_model=wynik[0],)
             db.session.add(user_poll_info)
             db.session.commit()
 
-            user_poll_info = Info(rok=3, zwiazek='Nie',
-                                  praca='Nie', gra_w_ciagu_12='Tak',)
+            #user_poll_info = Info(rok=3, zwiazek='Nie',praca='Nie', gra_w_ciagu_12='Tak',)
 
             return redirect(url_for('thanks_page'))
         elif gamesForm.validate_on_submit():
+
+            odp_list = [gamesForm.gra_prof.data, gamesForm.gra_tydz_weekend.data, gamesForm.gra_typ.data,
+                        gamesForm.gra_platforma.data, gamesForm.gra_klan.data, gamesForm.gra_grind.data,
+                        gamesForm.pandemia_start.data, gamesForm.pandemia_gra_wiecej.data, gamesForm.pandemia_czas.data,
+                        gamesForm.pozytyw_ucieczka.data, gamesForm.pozytyw_samokontrola.data, gamesForm.pozytyw_koncentracja.data,
+                        gamesForm.pozytyw_koordynacja.data, gamesForm.negatyw_gra_pomimo_konsekwencji.data, gamesForm.negatyw_gra_dluzej.data,
+                        gamesForm.negatyw_gra_nad_inne_aktywnosci.data, gamesForm.negatyw_zaniedbania.data, gamesForm.negatyw_gniew.data,
+                        gamesForm.tow_kontakty.data, gamesForm.tow_inni_sie_przejmuja.data, gamesForm.tow_brak_towarzystwa.data,
+                        gamesForm.tow_izolacja.data, gamesForm.tow_przytloczenie.data, infoForm.rok.data, infoForm.zwiazek.data, infoForm.praca.data
+                        ]
+
+            emptyDataFrame = MF.getEmpytDataFrame()
+            odp_array = MF.getDataFrame(emptyDataFrame, odp_list)
+
+            wynik = MF.predictUser(odp_array)
+            print("WYNIK!!!!!", wynik)
+
             user_poll_info = Info(rok=infoForm.rok.data, zwiazek=infoForm.zwiazek.data,
-                                  praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data,)
+                                  praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data,
+                                  uzaleznienie_model=int(wynik),)
+
             db.session.add(user_poll_info)
 
             db.session.commit()
@@ -56,21 +75,6 @@ def form_page():
 
             db.session.commit()
 
-            odp_list = [gamesForm.gra_prof.data, gamesForm.gra_tydz_weekend.data, gamesForm.gra_typ.data,
-                        gamesForm.gra_platforma.data, gamesForm.gra_klan.data, gamesForm.gra_grind.data,
-                        gamesForm.pandemia_start.data, gamesForm.pandemia_gra_wiecej.data, gamesForm.pandemia_czas.data,
-                        gamesForm.pozytyw_ucieczka.data, gamesForm.pozytyw_samokontrola.data, gamesForm.pozytyw_koncentracja.data,
-                        gamesForm.pozytyw_koordynacja.data, gamesForm.negatyw_gra_pomimo_konsekwencji.data, gamesForm.negatyw_gra_dluzej.data,
-                        gamesForm.negatyw_gra_nad_inne_aktywnosci.data, gamesForm.negatyw_zaniedbania.data, gamesForm.negatyw_gniew.data,
-                        gamesForm.tow_kontakty.data, gamesForm.tow_inni_sie_przejmuja.data, gamesForm.tow_brak_towarzystwa.data,
-                        gamesForm.tow_izolacja.data, gamesForm.tow_przytloczenie.data, infoForm.rok.data, infoForm.zwiazek.data, infoForm.praca.data
-                        ]
-
-            emptyDataFrame = MF.getEmpytDataFrame()
-            odp_array = MF.getDataFrame(emptyDataFrame, odp_list)
-
-            wynik = MF.predictUser(odp_array)
-            print("WYNIK!!!!!", wynik)
             return redirect(url_for('thanks_page'))
         else:
             flash('Uzupełnij odpowiedź!', category='error')

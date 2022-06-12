@@ -161,7 +161,7 @@ block content %}
         let gra_gniew_values = JSON.parse({{gra_gniew_values | tojson}});
 
         let gra_gniew_chart = new Chart(gra_gniew, {
-            type: 'polarArea',
+            type: 'pie',
             data: {
                 labels: ["Nigdy", "Rzadko", "Czasami", "Często", "Zawsze"],
                 datasets: [{
@@ -199,7 +199,7 @@ block content %}
         let negatyw_zaniedbania_data = JSON.parse({{negatyw_zaniedbania_values | tojson}});
 
         let negatyw_zaniedbania_chart = new Chart(negatyw_zaniedbania, {
-            type: 'polarArea',
+            type: 'pie',
             data: {
                 labels: ["Nigdy", "Rzadko", "Czasami", "Często", "Zawsze"],
                 datasets: [{
@@ -237,7 +237,7 @@ block content %}
         let negatyw_gra_nad_inne_aktywnosci_data = JSON.parse({{negatyw_gra_nad_inne_aktywnosci_values | tojson}});
 
         let negatyw_gra_nad_inne_aktywnosci_chart = new Chart(negatyw_gra_nad_inne_aktywnosci, {
-            type: 'polarArea',
+            type: 'pie',
             data: {
                 labels: ["Nigdy", "Rzadko", "Czasami", "Często", "Zawsze"],
                 datasets: [{
@@ -357,7 +357,7 @@ block content %}
          let pozytyw_koncentracja_data = JSON.parse({{pozytyw_koncentracja_values | tojson}});
 
         let pozytyw_koncentracja_chart = new Chart(pozytyw_koncentracja, {
-            type: 'polarArea',
+            type: 'pie',
             data: {
                 labels: ['1', '2', '3', '4', '5'],
                 datasets: [{
@@ -441,7 +441,7 @@ block content %}
         let pozytyw_koordynacja_data = JSON.parse({{pozytyw_koordynacja_values | tojson}});
 
         let pozytyw_koordynacja_chart = new Chart(pozytyw_koordynacja, {
-            type: 'polarArea',
+            type: 'pie',
             data: {
                 labels: ['1', '2', '3', '4', '5'],
                 datasets: [{

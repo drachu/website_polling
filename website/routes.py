@@ -30,6 +30,7 @@ def form_page():
             return redirect(url_for('thanks_page'))
         elif gamesForm.validate_on_submit():
 
+            # zapisanie odpowiedzi użytkownika do tablicy, aby móć później na nich wygodnie operować
             odp_list = [gamesForm.gra_prof.data, gamesForm.gra_tydz_weekend.data, gamesForm.gra_typ.data,
                         gamesForm.gra_platforma.data, gamesForm.gra_klan.data, gamesForm.gra_grind.data,
                         gamesForm.pandemia_start.data, gamesForm.pandemia_gra_wiecej.data, gamesForm.pandemia_czas.data,
@@ -40,11 +41,14 @@ def form_page():
                         gamesForm.tow_izolacja.data, gamesForm.tow_przytloczenie.data, infoForm.rok.data, infoForm.zwiazek.data, infoForm.praca.data
                         ]
 
+            # Wczytanie dataframu z ekploracji danych (rozkład i nazwy kolumn) i zapisanie do niego odpowiedzi użytkownika, aby następnie tak przygotowany dataframe wysłać do modelu
             emptyDataFrame = MF.getEmpytDataFrame()
             odp_array = MF.getDataFrame(emptyDataFrame, odp_list)
 
+            # Przewidywanie modelu
             wynik = MF.predictUser(odp_array)
-            print("WYNIK!!!!", wynik)
+
+            # Dodanie odpowiedzi użytkowniaka do bazy danych + przewidywanie modelu
 
             user_poll_info = Info(rok=infoForm.rok.data, zwiazek=infoForm.zwiazek.data,
                                   praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data,
@@ -61,7 +65,11 @@ def form_page():
             print(user_poll_info.id)
             print(user_poll_games.user_id)
             db.session.commit()
-            return redirect(url_for('thanks_page'))
+
+            if wynik == 1:
+                return redirect(url_for('danger_page'))
+            else:
+                return redirect(url_for('thanks_page'))
         else:
             flash('Uzupełnij odpowiedź!', category='error')
 

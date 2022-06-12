@@ -1,28 +1,20 @@
+
+"""Kod w głównej mierze pochodzi z książki Sebastiana Raschka pt.Python Machine learning i deep learning Biblioteki scikit-learn i TensorFlow2 Wydanie III wydawnictwa Helion """
+
 import numpy as np
 import matplotlib.pyplot as plt
 
 import os
 from sklearn.cluster import KMeans
-from sklearn.metrics import roc_curve, auc
 from scipy.cluster.hierarchy import linkage
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from pydotplus import graph_from_dot_data
 from sklearn.tree import export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 import ClassesClassifer as CC
-from sklearn.decomposition import PCA
 from matplotlib.colors import ListedColormap
-from sklearn.pipeline import make_pipeline
-from sklearn.model_selection import StratifiedKFold
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import learning_curve
-from numpy import interp
-from scipy import interp
 from sklearn.feature_selection import SelectFromModel
 from scipy.cluster.hierarchy import dendrogram
 
@@ -70,6 +62,8 @@ def MapStringToInt(database):
 
     return database
 
+# Dodanie nowej kolumny bazującej na ilości godzin spędzonych przy komputerze. Kolumna ta służy w dalszej analizie
+
 
 def AddBinaryClass(database, BitValue):
     ValueList = []
@@ -84,6 +78,8 @@ def AddBinaryClass(database, BitValue):
 
     return database
 
+# usunięcie niepotrzebnych  lub błędnych danych oraz kolumn
+
 
 def PreProcess(database, columnsToDrop):
     database.drop_duplicates()
@@ -95,12 +91,14 @@ def PreProcess(database, columnsToDrop):
     return database
 
 
+# Wykorzystanie algorytmu KMeans do zbadania najbardziej optymalnej ilości klastrów
 def skupieniaLokiec(database):
     distortions = []
     for i in range(1, 42):
         km = KMeans(n_clusters=i, init='k-means++',
                     n_init=10, max_iter=300, random_state=0)
         km.fit(database)
+        # Zniekształcenie jako suma kwadratów odległości próbek do najbliższego środka klastra
         distortions.append(km.inertia_)
 
     plt.plot(range(1, 42), distortions, marker='o')
@@ -110,6 +108,7 @@ def skupieniaLokiec(database):
     plt.show()
 
 
+# Stworzenie i zapisanie jako .png drzewa decyzyjnego powstałego na podstawie wprowadzonych danych
 def DecisionTree(database, feature_names, class_names, image_name, criterion='gini', max_deph=5, random_state=1, max_features=None):
     tree_model = DecisionTreeClassifier(
         criterion=criterion, max_depth=max_deph, random_state=random_state, max_features=max_features)
@@ -120,9 +119,9 @@ def DecisionTree(database, feature_names, class_names, image_name, criterion='gi
         X, y, test_size=0.025, random_state=0, stratify=y)
     tree_model.fit(X_train, y_train)
 
-    print('Dokladnosc Drzewa Decyzyjnego: ',
-          tree_model.score(X_train, y_train))
     SaveImageDecisionTree(tree_model, feature_names, class_names, image_name)
+
+# Program graphviz generuje ładniejsze obrazy reprezentujące powstałe drzewo decyzyjne
 
 
 def SaveImageDecisionTree(tree_model, feature_names, class_names, image_name):
@@ -135,7 +134,9 @@ def SaveImageDecisionTree(tree_model, feature_names, class_names, image_name):
                                feature_names=feature_names,
                                out_file=None)
     graph = graph_from_dot_data(dot_data)
-    graph.write_png('Images/'+image_name+'.png')
+    graph.write_png('Analiza_wynikow/Images/'+image_name+'.png')
+
+# Sprawdzenie ilości istotnych cech poprzez wykorzystanie estymatora KNN do klasyfikatora SBS
 
 
 def sprawdzenieIlosciIstnonychCech(database, n_neighbors=5):
@@ -153,8 +154,6 @@ def sprawdzenieIlosciIstnonychCech(database, n_neighbors=5):
     k_feat = [len(k) for k in sbs.subsets_]
 
     knn.fit(X_train, y_train)
-    print('Dokladnosc zbioru treningowego:', knn.score(X_train, y_train))
-    print('Dokladnosc zbioru testowego:', knn.score(X_test, y_test))
 
     plt.plot(k_feat, sbs.scores_, marker='o')
     plt.ylim([0.7, 1.02])
@@ -163,6 +162,8 @@ def sprawdzenieIlosciIstnonychCech(database, n_neighbors=5):
     plt.grid()
     plt.tight_layout()
     plt.show()
+
+# Wykorzystanie losowego lasu do określenia, które cechy są najważniejsze
 
 
 def istotnoscCechLas(database, threshold=0.06):
@@ -203,7 +204,7 @@ def istotnoscCechLas(database, threshold=0.06):
 def SelectFromModelFunction(model, X_train, feat_labels, importances, indices, threshold=0.1):
     sfm = SelectFromModel(model, threshold=threshold, prefit=True)
     X_selected = sfm.transform(X_train)
-    print('Liczba funkcji spełniających to kryterium progowe:',
+    print('Liczba cech spełniających podane kryterium progowe:',
           X_selected.shape[1])
 
     for f in range(X_selected.shape[1]):
@@ -225,148 +226,6 @@ def Dendogram(database):
     row_dendr = dendrogram(row_clusters, labels=labels, color_threshold=np.inf)
     plt.tight_layout()
     plt.ylabel('odleglosc Euklidesowa')
-    plt.show()
-
-
-def TestSKF(database):
-    X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
-                                                        stratify=y,
-                                                        random_state=0)
-
-    pipe_lr = make_pipeline(StandardScaler(),
-                            PCA(n_components=2),
-                            LogisticRegression(random_state=1, solver='lbfgs'))
-    kfold = StratifiedKFold(n_splits=10).split(X_train, y_train)
-
-    scores = cross_val_score(estimator=pipe_lr,
-                             X=X_train,
-                             y=y_train,
-                             cv=10,
-                             n_jobs=1)
-    print('CV dokladnosc scores: %s' % scores)
-    print('CV dokladnosc: %.1f +/- %.1f' %
-          (np.mean(scores)*100, np.std(scores)*100), ' [%]')
-
-
-def LearningCurveTest(database):
-    X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
-                                                        stratify=y,
-                                                        random_state=0)
-
-    pipe_lr = make_pipeline(StandardScaler(),
-                            LogisticRegression(penalty='l2', random_state=1,
-                                               solver='lbfgs', max_iter=10000))
-
-    pipe_lr = make_pipeline(StandardScaler(),
-                            LogisticRegression(penalty='l2', random_state=1,
-                                               solver='lbfgs', max_iter=10000))
-
-    train_sizes, train_scores, test_scores = learning_curve(estimator=pipe_lr,
-                                                            X=X_train,
-                                                            y=y_train,
-                                                            train_sizes=np.linspace(
-                                                                0.1, 1.0, 10),
-                                                            cv=10,
-                                                            n_jobs=1)
-
-    train_mean = np.mean(train_scores, axis=1)
-    train_std = np.std(train_scores, axis=1)
-    test_mean = np.mean(test_scores, axis=1)
-    test_std = np.std(test_scores, axis=1)
-
-    plt.plot(train_sizes, train_mean,
-             color='blue', marker='o',
-             markersize=5, label='Dokladnosc zbioru treningowego')
-
-    plt.fill_between(train_sizes,
-                     train_mean + train_std,
-                     train_mean - train_std,
-                     alpha=0.15, color='blue')
-
-    plt.plot(train_sizes, test_mean,
-             color='green', linestyle='--',
-             marker='s', markersize=5,
-             label='Dokladnosc zbioru walidujacego')
-
-    plt.fill_between(train_sizes,
-                     test_mean + test_std,
-                     test_mean - test_std,
-                     alpha=0.15, color='green')
-
-    plt.grid()
-    plt.xlabel('Liczba przykladow trenujacych')
-    plt.ylabel('Dokladnosc')
-    plt.legend(loc='lower right')
-    plt.ylim([0.4, 1.03])
-    plt.tight_layout()
-
-    plt.show()
-
-
-def ROCTest(database):
-    X, y = database.iloc[:, :-1].values, database.iloc[:, -1].values
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.025,
-                                                        stratify=y,
-                                                        random_state=0)
-
-    pipe_lr = make_pipeline(StandardScaler(),
-                            PCA(n_components=2),
-                            LogisticRegression(penalty='l2',
-                                               random_state=1,
-                                               solver='lbfgs',
-                                               C=100.0))
-
-    X_train2 = X_train
-
-    cv = list(StratifiedKFold(n_splits=2).split(X_train, y_train))
-
-    mean_tpr = 0.0
-    mean_fpr = np.linspace(0, 1, 100)
-
-    for i, (train, test) in enumerate(cv):
-        probas = pipe_lr.fit(X_train2[train],
-                             y_train[train]).predict_proba(X_train2[test])
-
-        fpr, tpr, thresholds = roc_curve(y_train[test],
-                                         probas[:, 1],
-                                         pos_label=1)
-        mean_tpr += interp(mean_fpr, fpr, tpr)
-        mean_tpr[0] = 0.0
-        roc_auc = auc(fpr, tpr)
-        plt.plot(fpr,
-                 tpr,
-                 label='ROC fold %d (area = %0.2f)'
-                 % (i+1, roc_auc))
-
-    plt.plot([0, 1],
-             [0, 1],
-             linestyle='--',
-             color=(0.6, 0.6, 0.6),
-             label='Zgadywanie')
-
-    mean_tpr /= len(cv)
-    mean_tpr[-1] = 1.0
-    mean_auc = auc(mean_fpr, mean_tpr)
-    plt.plot(mean_fpr, mean_tpr, 'k--',
-             label='Srednie ROC (area = %0.2f)' % mean_auc, lw=2)
-    plt.plot([0, 0, 1],
-             [0, 1, 1],
-             linestyle=':',
-             color='black',
-             label='Najlepsze dopasowanie')
-
-    plt.xlim([-0.05, 1.05])
-    plt.ylim([-0.05, 1.05])
-    plt.xlabel('Falszywie pozytywne wskaznik')
-    plt.ylabel('Prawdziwie pozytywne wskaznik')
-    plt.legend(loc="lower right")
-
-    plt.tight_layout()
     plt.show()
 
 

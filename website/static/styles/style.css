@@ -260,6 +260,24 @@ h2 {
   }
 }
 
+@-webkit-keyframes fade-in {
+  0% {
+    background: transparent;
+    color: transparent;
+  }
+  100% {
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    background: transparent;
+    color: transparent;
+  }
+  100% {
+  }
+}
+
 @-webkit-keyframes start-up-tab {
   0% {
     background: transparent;
@@ -501,6 +519,12 @@ canvas {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: all 0.4s ease-in-out 0.05s;
+  transition: all 0.4s ease-in-out 0.05s;
+  -webkit-animation-name: fade-in;
+          animation-name: fade-in;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
 }
 
 #individual-result {

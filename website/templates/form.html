@@ -43,7 +43,13 @@ endblock %} {% block content %}
 
   <div class="col-8">
     <div class="grid-container">
-      <form method="POST" action="" novalidate>
+      <form
+        method="POST"
+        action=""
+        novalidate
+        onsubmit="ValidationEvent()"
+        id="form-all"
+      >
         {{infoForm.hidden_tag()}} {{gamesForm.hidden_tag()}}
         <!-- 1 -->
         <div class="grid-item grid-container" id="q1">
@@ -199,6 +205,16 @@ endblock %} {% block content %}
       <li></li>
       <li></li>
     </ul>
+  </div>
+</div>
+
+<div class="loading-wrapper" id="loading">
+  <div class="loading-wrapper-inner">
+    <div class="📦"></div>
+    <div class="📦"></div>
+    <div class="📦"></div>
+    <div class="📦"></div>
+    <div class="📦"></div>
   </div>
 </div>
 

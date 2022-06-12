@@ -4,17 +4,86 @@ block content %}
   <div class="container my-5">
     <div class="grid_item_end">
       <h1 class="text-center my-4 pt-2">Dziękujemy za wypełnienie ankiety</h1>
-      <h2 class="mx-5 mb-5">
-        Wstępnie ziagnozowano u Ciebie uzależnienie od gier!
+      <h2 class="mx-5 mb-5" id="individual-result-bad">
+        Twoje odpowiedzi mogą wskazywać na uzależnienie!
       </h2>
+      <h2>
+        Znajdujesz się w {{uzaleznienie_procent}}% ankietowanych, u których
+        występuje ryzyko uzależnienia.
+      </h2>
+      <div class="text-center" style="margin-top: 0px">
+        <a href="https://116111.pl" role="button" aria-pressed="true">
+          <h2>Pomocy możesz szukać tutaj</h2>
+        </a>
+      </div>
       <h3 class="mx-5 mb-5"></h3>
       <h2 class="mx-5 mb-5">Zobacz jak odpowiadali inni!</h2>
     </div>
   </div>
 
+  <div class="container my-5" id="right-side">
+    <div class="grid_item_end">
+      <div class="row" id="data-row">
+        <div class="col col-text-right">
+          Wśród studentów znalazły się pojedyncze przypadki możliwego
+          uzależnienia. Większość osób jednak nie wykazuje poważnych symptomów i
+          zachowań ze skłonnościami do nadmiernego przesiadywania przed ekranem.
+        </div>
+        <div class="col">
+          <canvas id="uzaleznienie"></canvas>
+        </div>
+      </div>
+
+      <script>
+          let uzaleznienie_data = JSON.parse({{uzaleznienie_values | tojson}});
+
+        let uzaleznienie_chart = new Chart(uzaleznienie, {
+            type: 'doughnut',
+            data: {
+                labels: ['Nie wykryto', 'Wykryto'],
+                datasets: [{
+                    data: uzaleznienie_data,
+                    backgroundColor: ['#FAD7D7', '#BD0707'],
+
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 4,
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Osoby u których zdiagnozowano uzależnienie",
+                        fontFamily: "Bebas Neue"
+
+                    }
+                },
+                legend: {
+                    position: "bottom",
+                    labels: {
+                          font: {
+                            size: 100,
+                            fontfamily: "Times New Roman"
+                      }
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+            }
+        })
+      </script>
+    </div>
+  </div>
+
   <div class="container my-5" id="left-side">
     <div class="grid_item_end">
-      <div class="row">
+      <div class="row" id="data-row">
         <div class="col">
           <canvas id="gra_w_ciagu_12"></canvas>
         </div>
@@ -79,7 +148,7 @@ block content %}
       <h2 class="mx-5 mb-5">
         Jak wyglądaly najbardziej wyróżniające negatywne cechy?
       </h2>
-      <div class="row">
+      <div class="row" id="data-row">
         <div class="col">
           <canvas id="gra_gniew"></canvas>
         </div>
@@ -212,7 +281,7 @@ block content %}
 
   <div class="container my-5" id="right-side">
     <div class="grid_item_end">
-      <div class="row">
+      <div class="row" id="data-row">
         <div class="col col-text-right">
           W obecnych czasach gry online górują, jeśli chodzi o ten sposób
           rozgrywki. Chęć wspólnych przygód czy potrzeba konkurencji często
@@ -277,7 +346,7 @@ block content %}
       <h2 class="mx-5 mb-5">
         Jak wyglądaly najbardziej wyróżniające pozytywne cechy?
       </h2>
-      <div class="row">
+      <div class="row" id="data-row">
         <div class="col">
           <canvas id="pozytyw_koncentracja"></canvas>
         </div>

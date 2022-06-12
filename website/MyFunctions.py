@@ -1,7 +1,6 @@
 import joblib
 import pandas as pd
 
-
 def predictUser(array):
     model = LoadModel()
     return model.predict(array)

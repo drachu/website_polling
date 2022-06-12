@@ -58,10 +58,12 @@ def form_page():
                                     pozytyw_koordynacja=gamesForm.pozytyw_koordynacja.data, negatyw_gra_pomimo_konsekwencji=gamesForm.negatyw_gra_pomimo_konsekwencji.data, negatyw_gra_dluzej=gamesForm.negatyw_gra_dluzej.data, negatyw_gra_nad_inne_aktywnosci=gamesForm.negatyw_gra_nad_inne_aktywnosci.data, negatyw_zaniedbania=gamesForm.negatyw_zaniedbania.data, negatyw_gniew=gamesForm.negatyw_gniew.data, tow_kontakty=gamesForm.tow_kontakty.data, tow_inni_sie_przejmuja=gamesForm.tow_inni_sie_przejmuja.data, tow_brak_towarzystwa=gamesForm.tow_brak_towarzystwa.data, tow_izolacja=gamesForm.tow_izolacja.data, tow_przytloczenie=gamesForm.tow_przytloczenie.data, user_id=user_poll_info.id)
 
             db.session.add(user_poll_games)
-            print(user_poll_info.id)
-            print(user_poll_games.user_id)
             db.session.commit()
-            return redirect(url_for('thanks_page'))
+            if (wynik == 1):
+                return redirect(url_for('danger_page'))
+            else:
+                return redirect(url_for('thanks_page'))
+            
         else:
             flash('Uzupełnij odpowiedź!', category='error')
 
@@ -140,7 +142,13 @@ def thanks_page():
     for value, in gra_typ_db:
         gra_typ_values.append(value)
 
-    return render_template('thanks.html', gra_w_ciagu_12=json.dumps(gra_w_ciagu_12), gra_gniew_values=json.dumps(gra_gniew_values), negatyw_zaniedbania_values=json.dumps(negatyw_zaniedbania_values), negatyw_gra_nad_inne_aktywnosci_values=json.dumps(negatyw_gra_nad_inne_aktywnosci_values), pozytyw_koordynacja_values=json.dumps(pozytyw_koordynacja_values), pozytyw_koncentracja_values=json.dumps(pozytyw_koncentracja_values), pozytyw_samokontrola_values=json.dumps(pozytyw_samokontrola_values), gra_typ_values=json.dumps(gra_typ_values))
+    uzaleznienie_db = db.session.query(db.func.count(Info.uzaleznienie_model)).group_by(Info.uzaleznienie_model).all()
+    uzaleznienie_values = []
+    for value, in uzaleznienie_db:
+        uzaleznienie_values.append(value)
+    uzaleznienie_procent = round((uzaleznienie_values[0]*100)/sum(uzaleznienie_values), 1)
+
+    return render_template('thanks.html', gra_w_ciagu_12=json.dumps(gra_w_ciagu_12), gra_gniew_values=json.dumps(gra_gniew_values), negatyw_zaniedbania_values=json.dumps(negatyw_zaniedbania_values), negatyw_gra_nad_inne_aktywnosci_values=json.dumps(negatyw_gra_nad_inne_aktywnosci_values), pozytyw_koordynacja_values=json.dumps(pozytyw_koordynacja_values), pozytyw_koncentracja_values=json.dumps(pozytyw_koncentracja_values), pozytyw_samokontrola_values=json.dumps(pozytyw_samokontrola_values), gra_typ_values=json.dumps(gra_typ_values), uzaleznienie_values=json.dumps(uzaleznienie_values), uzaleznienie_procent=uzaleznienie_procent)
 
 
 @app.route('/danger')
@@ -215,4 +223,10 @@ def danger_page():
     for value, in gra_typ_db:
         gra_typ_values.append(value)
 
-    return render_template('danger.html', gra_w_ciagu_12=json.dumps(gra_w_ciagu_12), gra_gniew_values=json.dumps(gra_gniew_values), negatyw_zaniedbania_values=json.dumps(negatyw_zaniedbania_values), negatyw_gra_nad_inne_aktywnosci_values=json.dumps(negatyw_gra_nad_inne_aktywnosci_values), pozytyw_koordynacja_values=json.dumps(pozytyw_koordynacja_values), pozytyw_koncentracja_values=json.dumps(pozytyw_koncentracja_values), pozytyw_samokontrola_values=json.dumps(pozytyw_samokontrola_values), gra_typ_values=json.dumps(gra_typ_values))
+    uzaleznienie_db = db.session.query(db.func.count(Info.uzaleznienie_model)).group_by(Info.uzaleznienie_model).all()
+    uzaleznienie_values = []
+    for value, in uzaleznienie_db:
+        uzaleznienie_values.append(value)
+    uzaleznienie_procent = round((uzaleznienie_values[1]*100)/sum(uzaleznienie_values), 1)
+
+    return render_template('danger.html', gra_w_ciagu_12=json.dumps(gra_w_ciagu_12), gra_gniew_values=json.dumps(gra_gniew_values), negatyw_zaniedbania_values=json.dumps(negatyw_zaniedbania_values), negatyw_gra_nad_inne_aktywnosci_values=json.dumps(negatyw_gra_nad_inne_aktywnosci_values), pozytyw_koordynacja_values=json.dumps(pozytyw_koordynacja_values), pozytyw_koncentracja_values=json.dumps(pozytyw_koncentracja_values), pozytyw_samokontrola_values=json.dumps(pozytyw_samokontrola_values), gra_typ_values=json.dumps(gra_typ_values), uzaleznienie_values=json.dumps(uzaleznienie_values), uzaleznienie_procent=uzaleznienie_procent)

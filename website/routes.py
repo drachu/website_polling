@@ -30,6 +30,7 @@ def form_page():
             return redirect(url_for('thanks_page'))
         elif gamesForm.validate_on_submit():
 
+            # zapisanie odpowiedzi użytkownika do tablicy, aby móć później na nich wygodnie operować
             odp_list = [gamesForm.gra_prof.data, gamesForm.gra_tydz_weekend.data, gamesForm.gra_typ.data,
                         gamesForm.gra_platforma.data, gamesForm.gra_klan.data, gamesForm.gra_grind.data,
                         gamesForm.pandemia_start.data, gamesForm.pandemia_gra_wiecej.data, gamesForm.pandemia_czas.data,
@@ -40,11 +41,14 @@ def form_page():
                         gamesForm.tow_izolacja.data, gamesForm.tow_przytloczenie.data, infoForm.rok.data, infoForm.zwiazek.data, infoForm.praca.data
                         ]
 
+            # Wczytanie dataframu z ekploracji danych (rozkład i nazwy kolumn) i zapisanie do niego odpowiedzi użytkownika, aby następnie tak przygotowany dataframe wysłać do modelu
             emptyDataFrame = MF.getEmpytDataFrame()
             odp_array = MF.getDataFrame(emptyDataFrame, odp_list)
 
+            # Przewidywanie modelu
             wynik = MF.predictUser(odp_array)
-            print("WYNIK!!!!", wynik)
+
+            # Dodanie odpowiedzi użytkowniaka do bazy danych + przewidywanie modelu
 
             user_poll_info = Info(rok=infoForm.rok.data, zwiazek=infoForm.zwiazek.data,
                                   praca=infoForm.praca.data, gra_w_ciagu_12=infoForm.gra_w_ciagu_12.data,
@@ -63,7 +67,7 @@ def form_page():
                 return redirect(url_for('danger_page'))
             else:
                 return redirect(url_for('thanks_page'))
-            
+
         else:
             flash('Uzupełnij odpowiedź!', category='error')
 
@@ -142,11 +146,13 @@ def thanks_page():
     for value, in gra_typ_db:
         gra_typ_values.append(value)
 
-    uzaleznienie_db = db.session.query(db.func.count(Info.uzaleznienie_model)).group_by(Info.uzaleznienie_model).all()
+    uzaleznienie_db = db.session.query(db.func.count(
+        Info.uzaleznienie_model)).group_by(Info.uzaleznienie_model).all()
     uzaleznienie_values = []
     for value, in uzaleznienie_db:
         uzaleznienie_values.append(value)
-    uzaleznienie_procent = round((uzaleznienie_values[0]*100)/sum(uzaleznienie_values), 1)
+    uzaleznienie_procent = round(
+        (uzaleznienie_values[0]*100)/sum(uzaleznienie_values), 1)
 
     return render_template('thanks.html', gra_w_ciagu_12=json.dumps(gra_w_ciagu_12), gra_gniew_values=json.dumps(gra_gniew_values), negatyw_zaniedbania_values=json.dumps(negatyw_zaniedbania_values), negatyw_gra_nad_inne_aktywnosci_values=json.dumps(negatyw_gra_nad_inne_aktywnosci_values), pozytyw_koordynacja_values=json.dumps(pozytyw_koordynacja_values), pozytyw_koncentracja_values=json.dumps(pozytyw_koncentracja_values), pozytyw_samokontrola_values=json.dumps(pozytyw_samokontrola_values), gra_typ_values=json.dumps(gra_typ_values), uzaleznienie_values=json.dumps(uzaleznienie_values), uzaleznienie_procent=uzaleznienie_procent)
 
@@ -223,10 +229,12 @@ def danger_page():
     for value, in gra_typ_db:
         gra_typ_values.append(value)
 
-    uzaleznienie_db = db.session.query(db.func.count(Info.uzaleznienie_model)).group_by(Info.uzaleznienie_model).all()
+    uzaleznienie_db = db.session.query(db.func.count(
+        Info.uzaleznienie_model)).group_by(Info.uzaleznienie_model).all()
     uzaleznienie_values = []
     for value, in uzaleznienie_db:
         uzaleznienie_values.append(value)
-    uzaleznienie_procent = round((uzaleznienie_values[1]*100)/sum(uzaleznienie_values), 1)
+    uzaleznienie_procent = round(
+        (uzaleznienie_values[1]*100)/sum(uzaleznienie_values), 1)
 
     return render_template('danger.html', gra_w_ciagu_12=json.dumps(gra_w_ciagu_12), gra_gniew_values=json.dumps(gra_gniew_values), negatyw_zaniedbania_values=json.dumps(negatyw_zaniedbania_values), negatyw_gra_nad_inne_aktywnosci_values=json.dumps(negatyw_gra_nad_inne_aktywnosci_values), pozytyw_koordynacja_values=json.dumps(pozytyw_koordynacja_values), pozytyw_koncentracja_values=json.dumps(pozytyw_koncentracja_values), pozytyw_samokontrola_values=json.dumps(pozytyw_samokontrola_values), gra_typ_values=json.dumps(gra_typ_values), uzaleznienie_values=json.dumps(uzaleznienie_values), uzaleznienie_procent=uzaleznienie_procent)

@@ -1,15 +1,21 @@
 import joblib
 import pandas as pd
 
+# wczytanie modelu i predykcja wyniku na podstawie odpowiedzi użytkownika
+
+
 def predictUser(array):
     model = LoadModel()
     return model.predict(array)
 
+# Załadowanie wytrenowanego modelu
+
 
 def LoadModel():
     model = joblib.load('website/my_model.pkl')
-
     return model
+
+# Mapowanie wartości typu String na typ Int
 
 
 def PreProccess(dataframe):
@@ -20,8 +26,6 @@ def PreProccess(dataframe):
     PozaWCzasieMap = {'poza': 1, 'w_czasie': 0}
     NigdyZawszeMap = {'nigdy': 1, 'rzadko': 2,
                       'czasami': 3, 'czesto': 4, 'zawsze': 5}
-
-    print(dataframe)
 
     """ Mapowanie wartosci typu string na int"""
     dataframe['gra_prof'] = dataframe['gra_prof'].map(TakNieMap)
@@ -57,18 +61,22 @@ def PreProccess(dataframe):
     dataframe['zwiazek'] = dataframe['zwiazek'].map(TakNieMap)
     dataframe['praca'] = dataframe['praca'].map(TakNieMap)
 
-    print(dataframe)
-
     return dataframe
+
+# wczytanie dataframu
 
 
 def loadDataFrame():
     return pd.read_pickle('website/DataFrame.pkl')
 
+# wczytanie dataframu i zwrócenie go
+
 
 def getEmpytDataFrame():
     dataframe = loadDataFrame()
     return dataframe
+
+# zapisanie odpowiedzi użytkownika do dataframu i obróbka ich
 
 
 def getDataFrame(dataframe, array):

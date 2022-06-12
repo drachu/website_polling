@@ -12,8 +12,6 @@ from sklearn.tree import DecisionTreeClassifier
 from pydotplus import graph_from_dot_data
 from sklearn.tree import export_graphviz
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-import ClassesClassifer as CC
 from sklearn.feature_selection import SelectFromModel
 from scipy.cluster.hierarchy import dendrogram
 
@@ -135,32 +133,6 @@ def SaveImageDecisionTree(tree_model, feature_names, class_names, image_name):
     graph = graph_from_dot_data(dot_data)
     graph.write_png('Analiza_wynikow/Images/'+image_name+'.png')
 
-# Sprawdzenie ilości istotnych cech poprzez wykorzystanie estymatora KNN do klasyfikatora SBS
-
-
-def sprawdzenieIlosciIstnonychCech(database, n_neighbors=5):
-
-    knn = KNeighborsClassifier(n_neighbors=n_neighbors)
-    X = database.iloc[:, :-1].values
-    y = database['WynikLudzki'].values
-
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.025, random_state=0, stratify=y)
-
-    sbs = CC.SBS(knn, k_features=5)
-    sbs.fit(X_train, y_train)
-
-    k_feat = [len(k) for k in sbs.subsets_]
-
-    knn.fit(X_train, y_train)
-
-    plt.plot(k_feat, sbs.scores_, marker='o')
-    plt.ylim([0.7, 1.02])
-    plt.ylabel('Dokladnosc')
-    plt.xlabel('Liczba cech')
-    plt.grid()
-    plt.tight_layout()
-    plt.show()
 
 # Wykorzystanie losowego lasu do określenia, które cechy są najważniejsze
 

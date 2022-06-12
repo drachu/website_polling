@@ -42,7 +42,7 @@ def run():
     MF.DecisionTree(database, feature_names, class_names, image_name='Entropy_10_0 ',
                     criterion='entropy', max_deph=10, random_state=0)
 
-    # #6 najwazniejszych cech
+    # 6 najwazniejszych cech
     columnsToDrop = ['gra_prof', 'gra_typ', 'gra_platforma', 'gra_grind', 'pandemia_start', 'pandemia_gra_wiecej', 'pandemia_czas', 'pozytyw_ucieczka', 'pozytyw_samokontrola', 'pozytyw_koncentracja',
                      'pozytyw_koordynacja', 'negatyw_gra_pomimo_konsekwencji', 'negatyw_gra_dluzej', 'tow_kontakty', 'tow_inni_sie_przejmuja', 'tow_brak_towarzystwa', 'tow_izolacja', 'rok', 'zwiazek', 'praca']
     feature_names = ['negatyw_zaniedbania', 'gra_tydz_weekend',
@@ -51,8 +51,6 @@ def run():
 
     MF.DecisionTree(database, feature_names, class_names, image_name='6_Entropy_10_0 ',
                     criterion='entropy', max_deph=10, random_state=0)
-
-    MF.sprawdzenieIlosciIstnonychCech(database, 6)
 
 
 if __name__ == "__main__":

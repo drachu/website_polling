@@ -1,20 +1,6 @@
 import joblib
 import pandas as pd
 
-# wczytanie modelu i predykcja wyniku na podstawie odpowiedzi użytkownika
-
-
-def predictUser(array):
-    model = LoadModel()
-    return model.predict(array)
-
-# Załadowanie wytrenowanego modelu
-
-
-def LoadModel():
-    model = joblib.load('website/my_model.pkl')
-    return model
-
 # Mapowanie wartości typu String na typ Int
 
 
@@ -63,11 +49,6 @@ def PreProccess(dataframe):
 
     return dataframe
 
-# wczytanie dataframu
-
-
-def loadDataFrame():
-    return pd.read_pickle('website/DataFrame.pkl')
 
 # wczytanie dataframu i zwrócenie go
 
@@ -87,3 +68,22 @@ def getDataFrame(dataframe, array):
     dataframe = PreProccess(dataframe)
 
     return dataframe
+
+# Załadowanie wytrenowanego modelu
+
+
+def LoadModel():
+    model = joblib.load('website/my_model.pkl')
+    return model
+# wczytanie dataframu
+
+
+def loadDataFrame():
+    return pd.read_pickle('website/DataFrame.pkl')
+
+# wczytanie modelu i predykcja wyniku na podstawie odpowiedzi użytkownika
+
+
+def predictUser(array):
+    model = LoadModel()
+    return model.predict(array)
